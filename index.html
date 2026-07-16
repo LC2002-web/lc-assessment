@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LC Assessment Framework — Explorer</title>
 <style>
   :root{
@@ -94,9 +95,21 @@
   .cue-tag{ flex:0 0 34px; text-align:center; font-size:0.72rem; font-weight:700; color:#fff; border-radius:5px; padding:2px 0; }
   .cue-text{ font-size:0.85rem; color:var(--ink); }
 
-  table.worked{ width:100%; border-collapse:collapse; font-size:0.85rem; margin-top:8px; }
+  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:8px; }
+  table.worked{ width:100%; min-width:420px; border-collapse:collapse; font-size:0.85rem; }
   table.worked th, table.worked td{ border:1px solid var(--line); padding:8px 10px; text-align:left; }
   table.worked th{ background:#f3f3f5; }
+
+  @media (max-width: 600px){
+    header{ padding:20px 16px 10px; }
+    header .titles h1{ font-size:1.25rem; }
+    nav{ padding:0 16px; }
+    main{ padding:16px; }
+    .card{ padding:16px; }
+    .pillbar{ flex-wrap:wrap; }
+    .pill{ flex:1 1 40%; }
+    .cue-tag{ flex:0 0 30px; font-size:0.68rem; }
+  }
 
   .badge{ display:inline-block; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:999px; margin-left:6px; vertical-align:middle; }
   .badge.editable{ background:#e6f2e9; color:#2e6b48; }
@@ -235,12 +248,12 @@
       <div class="card">
         <h2>Architecture</h2>
         <p>3 pillars × 3 indicators × 2 statements = 18 statements total.</p>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>Pillar</th><th>Indicators</th></tr>
           <tr><td>1 — The Heart (spiritual)</td><td>Scriptural &amp; Prayer Foundations · Ministry Identity · Community Care &amp; Unity</td></tr>
           <tr><td>2 — The Art (musical/generational)</td><td>Vocal Development · Instrumental Musicianship · Conducting &amp; Musical Direction</td></tr>
           <tr><td>3 — The Mission (evangelistic)</td><td>Outreach Intentionality · Total Mobilization · Event Structure Reproducibility</td></tr>
-        </table>
+        </table></div>
         <p class="muted" style="margin-top:10px;">Pillar 2 was redesigned around the three role-types LC's music actually depends on (vocal, instrumental, conducting) rather than a generic function-based split, so each indicator maps to a distinct kind of person the ministry needs to reproduce.</p>
       </div>
       <div class="card">
@@ -272,12 +285,12 @@
       <div class="card">
         <h2>架構</h2>
         <p>3個支柱 × 3個指標 × 2句陳述 = 共18句陳述。</p>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>支柱</th><th>指標</th></tr>
           <tr><td>1 —— 心(靈命)</td><td>查經與禱告根基 · 事奉身分認同 · 群體關懷與合一</td></tr>
           <tr><td>2 —— 藝(音樂/世代)</td><td>人聲培育 · 樂器演奏能力 · 指揮與音樂總監</td></tr>
           <tr><td>3 —— 宣(福音影響力)</td><td>外展意圖 · 全體動員 · 活動架構可複製性</td></tr>
-        </table>
+        </table></div>
         <p class="muted" style="margin-top:10px;">支柱二已經重新設計,改成圍繞LC音樂實際仰賴的三種角色(人聲、樂器演奏、指揮),而不是原本以功能區分的方式,讓每個指標對應一種事工需要複製的具體角色。</p>
       </div>
       <div class="card">
@@ -310,13 +323,13 @@
     <div class="lang-en">
       <div class="card">
         <h2>Universal Rating Scale</h2>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>Level</th><th>Definition</th></tr>
           <tr><td><b>L1 · Infancy</b></td><td>The fellowship cannot do this at all and requires constant outside support or leader drive to function.</td></tr>
           <tr><td><b>L2 · Youth</b></td><td>Does this inconsistently; some parts function, many parts fail.</td></tr>
           <tr><td><b>L3 · Maturity</b></td><td>The current core team has mastered this, but the knowledge is limited to them. They have not trained others.</td></tr>
           <tr><td><b>L4 · Reproduction</b></td><td>A clear system naturally encourages, trains, and produces the next generation to take over.</td></tr>
-        </table>
+        </table></div>
       </div>
       <div class="card">
         <h2>⚠️ Rating Discipline</h2>
@@ -326,23 +339,23 @@
       <div class="card">
         <h2>Worked Example — System-Type Statement</h2>
         <p class="muted">Statement 1.1: "The fellowship runs a consistent, structured Bible study series as a regular part of weekly gatherings."</p>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>Level</th><th>What a rater would observe</th></tr>
           <tr><td>Infancy</td><td>Only happens on weeks the Director personally prepares and pushes it; without them, it doesn't happen.</td></tr>
           <tr><td>Youth</td><td>Happens most weeks, but patchy — some weeks solid, some skipped or rushed.</td></tr>
           <tr><td>Maturity</td><td>Happens consistently, well-prepared, good discussion — but only one specific person can lead it.</td></tr>
           <tr><td>Reproduction</td><td>Multiple people take turns preparing/leading it, and newer members are actively being coached into taking a turn.</td></tr>
-        </table>
+        </table></div>
       </div>
       <div class="card">
         <h2>Worked Example — Paired Statements (9.1 / 9.2)</h2>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>9.1 Structured</th><th>9.2 Unstructured</th><th>What it suggests</th></tr>
           <tr><td>High</td><td>High</td><td>Genuinely reproducible on both fronts — the healthiest state.</td></tr>
           <tr><td>High</td><td>Low</td><td>Well-drilled on tradition, but no bench strength for creativity.</td></tr>
           <tr><td>Low</td><td>High</td><td>Creatively strong, but hasn't institutionalized its own recurring events.</td></tr>
           <tr><td>Low</td><td>Low</td><td>Both capabilities concentrated in one or two people — highest-risk state.</td></tr>
-        </table>
+        </table></div>
       </div>
       <div class="card">
         <h2>How to Score as a Committee</h2>
@@ -358,13 +371,13 @@
     <div class="lang-zh">
       <div class="card">
         <h2>通用評分量表</h2>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>等級</th><th>定義</th></tr>
           <tr><td><b>1級 · 嬰兒期</b></td><td>團契完全做不到這件事,需要外部持續協助或負責人強力推動才有辦法運作。</td></tr>
           <tr><td><b>2級 · 成長期</b></td><td>做得不穩定;有些部分還可以,但很多部分做不到。</td></tr>
           <tr><td><b>3級 · 成熟期</b></td><td>現在的核心團隊已經很會做這件事,但這個能力只有他們會,沒有教其他人。</td></tr>
           <tr><td><b>4級 · 傳承期</b></td><td>有一套明確的系統,會自然鼓勵、訓練並培養下一代來接手。</td></tr>
-        </table>
+        </table></div>
       </div>
       <div class="card">
         <h2>⚠️ 評分紀律</h2>
@@ -374,23 +387,23 @@
       <div class="card">
         <h2>評分範例 —— 系統類陳述句</h2>
         <p class="muted">陳述1.1:「團契每週聚會中,固定有一套結構性的查經(逐章研讀),作為固定的一部分。」</p>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>等級</th><th>評分者會觀察到什麼</th></tr>
           <tr><td>嬰兒期</td><td>只有牧者/負責人親自準備並推動的那幾週才會有查經,沒有他就不會有。</td></tr>
           <tr><td>成長期</td><td>大部分週次都有,但時好時壞——有些週次很扎實,有些被跳過或匆匆帶過。</td></tr>
           <tr><td>成熟期</td><td>穩定進行,準備充分,討論品質好——但只有一個特定的人能帶。</td></tr>
           <tr><td>傳承期</td><td>好幾個人輪流準備、帶領,新人也正在被培養、練習接手。</td></tr>
-        </table>
+        </table></div>
       </div>
       <div class="card">
         <h2>評分範例 —— 成對陳述句(9.1 / 9.2)</h2>
-        <table class="worked">
+        <div class="table-scroll"><table class="worked">
           <tr><th>9.1 結構化</th><th>9.2 自由創作</th><th>代表的意思</th></tr>
           <tr><td>高</td><td>高</td><td>兩方面都真正可複製——最健康的狀態。</td></tr>
           <tr><td>高</td><td>低</td><td>傳統的部分很扎實,但創意的部分沒有儲備人才。</td></tr>
           <tr><td>低</td><td>高</td><td>創意能力強,但還沒把自己的固定活動制度化。</td></tr>
           <tr><td>低</td><td>低</td><td>兩種能力都集中在一兩個人身上——風險最高的狀態。</td></tr>
-        </table>
+        </table></div>
       </div>
       <div class="card">
         <h2>委員會如何評分</h2>
