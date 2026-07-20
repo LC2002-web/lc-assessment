@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LC Assessment Framework — Explorer</title>
+<title>Khung Đánh Giá 樂歌 (LC) — Explorer</title>
 <style>
   :root{
     --ink:#1f2430; --sub:#5b6270; --line:#e3e5ea; --bg:#fafafa; --card:#ffffff;
@@ -13,37 +13,30 @@
   }
   *{box-sizing:border-box;}
   body{
-    margin:0; font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",Helvetica,Arial,sans-serif;
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     background:var(--bg); color:var(--ink); line-height:1.6;
   }
-  body.lang-en .lang-zh{ display:none !important; }
-  body.lang-zh .lang-en{ display:none !important; }
+
+  .site-top{ position:sticky; top:0; z-index:100; background:var(--bg); }
 
   header{
-    padding:24px 24px 12px; max-width:960px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;
+    padding:24px 24px 12px; max-width:980px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:nowrap;
   }
+  header .titles{ flex:1 1 auto; min-width:0; }
   header .titles h1{ font-size:1.5rem; margin:0 0 4px; }
   header .titles p{ color:var(--sub); margin:0; font-size:0.95rem; }
 
-  .lang-switch{
-    display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; flex:0 0 auto;
-  }
-  .lang-switch button{
-    border:none; background:var(--card); padding:8px 16px; font-size:0.85rem; font-weight:700; cursor:pointer; color:var(--sub);
-  }
-  .lang-switch button.active{ background:var(--ink); color:#fff; }
-
   nav{
-    max-width:960px; margin:0 auto; padding:0 24px; display:flex; gap:8px;
+    max-width:980px; margin:0 auto; padding:0 24px; display:flex; gap:8px;
     border-bottom:1px solid var(--line); flex-wrap:wrap;
   }
   nav button.tab-btn{
-    background:none; border:none; padding:10px 14px; font-size:0.9rem; cursor:pointer;
-    color:var(--sub); border-bottom:2px solid transparent; font-weight:600;
+    background:none; border:none; padding:10px 14px; font-size:0.95rem; cursor:pointer;
+    color:var(--sub); border-bottom:2px solid transparent; font-weight:700;
   }
   nav button.tab-btn.active{ color:var(--ink); border-bottom-color:var(--ink); }
 
-  main{ max-width:960px; margin:0 auto; padding:24px; }
+  main{ max-width:980px; margin:0 auto; padding:24px; }
   section.view{ display:none; }
   section.view.active{ display:block; }
 
@@ -55,18 +48,25 @@
   .card h3{ font-size:0.98rem; margin:18px 0 6px; }
   .muted{ color:var(--sub); font-size:0.9rem; }
 
-  .pillbar{ display:flex; gap:6px; margin:10px 0; }
+  .pillbar{ display:flex; gap:8px; margin:12px 0; }
   .pill{
-    flex:1; text-align:center; font-size:0.72rem; font-weight:700; color:#fff;
-    padding:5px 4px; border-radius:6px;
+    flex:1; text-align:center; font-size:1.05rem; font-weight:800; color:#fff;
+    padding:12px 6px; border-radius:8px;
   }
   .pill.l1{background:var(--l1);} .pill.l2{background:var(--l2);}
   .pill.l3{background:var(--l3);} .pill.l4{background:var(--l4);}
 
-  .pillar-tabs{ display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .level-def{ border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px; border-left:5px solid var(--line); }
+  .level-def.l1{ border-left-color:var(--l1); } .level-def.l2{ border-left-color:var(--l2); }
+  .level-def.l3{ border-left-color:var(--l3); } .level-def.l4{ border-left-color:var(--l4); }
+  .level-def .lvl-tag{ font-weight:700; font-size:0.85rem; margin-bottom:4px; }
+
+  .assessment-sticky{ position:sticky; z-index:90; background:var(--bg); margin-top:-24px; padding-top:10px; padding-bottom:10px; border-bottom:1px solid var(--line); }
+
+  .pillar-tabs{ display:flex; gap:10px; margin-bottom:0; flex-wrap:wrap; }
   .pillar-tab{
-    border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer;
-    font-size:0.85rem; font-weight:600; background:var(--card); color:var(--sub);
+    border:1px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer;
+    font-size:0.9rem; font-weight:700; background:var(--card); color:var(--sub);
   }
   .pillar-tab.active[data-p="1"]{ background:var(--heart); color:#fff; border-color:var(--heart);}
   .pillar-tab.active[data-p="2"]{ background:var(--art); color:#fff; border-color:var(--art);}
@@ -75,557 +75,243 @@
   .pillar-block{ display:none; }
   .pillar-block.active{ display:block; }
 
-  .indicator{ border-left:4px solid var(--line); padding-left:14px; margin-bottom:18px; }
+  .indicator-nav{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
+  .indicator-chip{
+    border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:0.8rem;
+    font-weight:600; color:var(--ink); background:#fff; cursor:pointer; text-decoration:none;
+  }
+  .indicator-chip:hover{ background:#f2f2f4; }
+  .indicator-chip.p1{ border-color:var(--heart); }
+  .indicator-chip.p2{ border-color:var(--art); }
+  .indicator-chip.p3{ border-color:var(--mission); }
+
+  .indicator{ border-left:4px solid var(--line); padding-left:14px; margin-bottom:22px; scroll-margin-top:16px; }
   .indicator.p1{ border-color:var(--heart); }
   .indicator.p2{ border-color:var(--art); }
   .indicator.p3{ border-color:var(--mission); }
-  .indicator h3{ margin:0 0 10px; }
+  .indicator h3{ margin:0 0 12px; }
 
   .statement{
     background:#fbfbfc; border:1px solid var(--line); border-radius:10px;
-    padding:14px 16px; margin-bottom:10px; cursor:pointer;
+    padding:16px 18px; margin-bottom:12px; scroll-margin-top:16px;
   }
-  .statement .label{ font-size:0.78rem; font-weight:700; color:var(--sub); letter-spacing:.02em; }
-  .statement blockquote{ margin:6px 0 0; font-size:0.95rem; font-style:italic; color:var(--ink); }
-  .statement .cues{ display:none; margin-top:12px; font-size:0.85rem; }
-  .statement.open .cues{ display:block; }
-  .statement .toggle-hint{ font-size:0.75rem; color:var(--sub); margin-top:6px; }
+  .statement .label{ font-size:0.85rem; font-weight:800; color:var(--ink); letter-spacing:.02em; text-transform:uppercase; }
+  .statement blockquote{ margin:8px 0 0; padding-left:14px; border-left:3px solid var(--line); font-size:1.1rem; font-weight:600; font-style:normal; color:var(--ink); line-height:1.55; }
+  .statement .cues{ margin-top:22px; }
 
-  .cue-row{ display:flex; gap:8px; margin-bottom:6px; align-items:flex-start; }
-  .cue-tag{ flex:0 0 34px; text-align:center; font-size:0.72rem; font-weight:700; color:#fff; border-radius:5px; padding:2px 0; }
-  .cue-text{ font-size:0.85rem; color:var(--ink); }
+  .cue-row{ display:flex; gap:8px; margin-bottom:7px; align-items:flex-start; }
+  .cue-tag{ flex:0 0 40px; text-align:center; font-size:0.72rem; font-weight:700; color:#fff; border-radius:5px; padding:3px 0; height:fit-content; }
+  .cue-tag.l1{background:var(--l1);} .cue-tag.l2{background:var(--l2);}
+  .cue-tag.l3{background:var(--l3);} .cue-tag.l4{background:var(--l4);}
+  .cue-text{ font-size:0.83rem; color:var(--sub); }
 
-  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:8px; }
-  table.worked{ width:100%; min-width:420px; border-collapse:collapse; font-size:0.85rem; }
-  table.worked th, table.worked td{ border:1px solid var(--line); padding:8px 10px; text-align:left; }
-  table.worked th{ background:#f3f3f5; }
+  .steps{ padding-left:20px; }
+  .steps li{ margin-bottom:10px; }
 
   @media (max-width: 600px){
-    header{ padding:20px 16px 10px; }
+    header{ padding:20px 16px 10px; flex-wrap:wrap; align-items:flex-start; }
     header .titles h1{ font-size:1.25rem; }
     nav{ padding:0 16px; }
     main{ padding:16px; }
+    .assessment-sticky{ margin-top:-16px; padding-top:8px; }
     .card{ padding:16px; }
     .pillbar{ flex-wrap:wrap; }
-    .pill{ flex:1 1 40%; }
-    .cue-tag{ flex:0 0 30px; font-size:0.68rem; }
+    .pill{ flex:1 1 40%; font-size:0.9rem; padding:10px 6px; }
+    .cue-tag{ flex:0 0 34px; font-size:0.68rem; }
   }
-
-  .badge{ display:inline-block; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:999px; margin-left:6px; vertical-align:middle; }
-  .badge.editable{ background:#e6f2e9; color:#2e6b48; }
-  .badge.locked{ background:#f2e6e6; color:#8a3a3a; }
-
-  ul.principles{ padding-left:20px; }
-  ul.principles li{ margin-bottom:12px; }
-  ul.principles b{ display:block; margin-bottom:2px; }
-
-  .filelist{ list-style:none; padding:0; margin:0; }
-  .filelist li{ padding:8px 0; border-bottom:1px solid var(--line); font-size:0.9rem; }
-  .filelist li:last-child{ border-bottom:none; }
-  code{ background:#f2f2f4; padding:1px 5px; border-radius:4px; font-size:0.85em; }
 </style>
 </head>
-<body class="lang-en">
+<body>
 
+<div class="site-top" id="site-top">
 <header>
   <div class="titles">
-    <div class="lang-en"><h1>樂歌 (LC) Assessment Framework</h1><p>Explorer view — diagnose reproducibility, not just quality. No ratings are submitted here.</p></div>
-    <div class="lang-zh"><h1>樂歌(LC)評估框架</h1><p>瀏覽版——診斷可複製性,而不只是品質好壞。這裡不會提交任何評分。</p></div>
-  </div>
-  <div class="lang-switch">
-    <button id="btn-lang-en" class="active">EN</button>
-    <button id="btn-lang-zh">中文</button>
+    <h1>Khung Đánh Giá 樂歌 (LC)</h1>
   </div>
 </header>
 
 <nav>
-  <button class="tab-btn active" data-view="overview">
-    <span class="lang-en">Overview</span><span class="lang-zh">總覽</span>
-  </button>
-  <button class="tab-btn" data-view="principles">
-    <span class="lang-en">Principles</span><span class="lang-zh">設計原則</span>
-  </button>
-  <button class="tab-btn" data-view="questionnaire">
-    <span class="lang-en">Questionnaire</span><span class="lang-zh">問卷</span>
-  </button>
-  <button class="tab-btn" data-view="guideline">
-    <span class="lang-en">Rating Guide</span><span class="lang-zh">評分指南</span>
-  </button>
+  <button class="tab-btn active" data-view="guideline">Hướng Dẫn Đánh Giá</button>
+  <button class="tab-btn" data-view="assessment">Bộ Đánh Giá</button>
 </nav>
+</div>
 
 <main>
 
-  <!-- OVERVIEW -->
-  <section class="view active" id="view-overview">
+  <!-- RATING GUIDELINE -->
+  <section class="view active" id="view-guideline">
 
-    <div class="lang-en">
-      <div class="card">
-        <h2>Background</h2>
-        <p>樂歌 (LC) is a cross-church youth musical ministry established in 2002, built around four strategic aims — evangelism, standardization, talent cultivation, and promotion. It runs on a small, rotating committee and a fellowship of members progressing through a defined membership pathway.</p>
-      </div>
-      <div class="card">
-        <h2>The Problem</h2>
-        <p>Not just "how well is the ministry doing," but: <b>how much of what's working depends on the specific people currently here — and would it survive if they left?</b></p>
-        <p class="muted">A ministry can look completely healthy — great music, strong community, effective outreach — while quietly depending on one or two individuals for nearly everything. That fragility is invisible until the moment those people are no longer available.</p>
-      </div>
-      <div class="card">
-        <h2>What This Framework Does</h2>
-        <ol>
-          <li><b>Diagnoses</b> current maturity across three pillars — The Heart, The Art, The Mission — using a 4-level reproducibility scale.</li>
-          <li><b>Surfaces gaps</b> between where things stand today (As-Is) and where the committee wants to be (To-Be).</li>
-          <li><b>Preserves disagreement as signal</b> — individual ratings after group discussion, spread retained rather than averaged away.</li>
-          <li><b>Feeds a 2–3 year action plan</b> — out of scope for this design phase, but the destination.</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h2>Files in This Framework</h2>
-        <ul class="filelist">
-          <li><code>EN/00_purpose.md</code> — background, problem, goal <span class="badge editable">editable</span></li>
-          <li><code>EN/01_framework_principles.md</code> — design rules behind the scale and statements <span class="badge locked">locked</span></li>
-          <li><code>EN/02_refined_questionnaire_en.md</code> — the 9 indicators / 18 statements <span class="badge editable">editable</span></li>
-          <li><code>EN/03_rating_guideline.md</code> — scale definitions, discipline, worked examples <span class="badge locked">locked</span></li>
-          <li><code>00_vocabulary.md</code> — EN / CN / VN terminology alignment</li>
-        </ul>
-      </div>
+    <div class="card">
+      <h2>Trước khi đánh giá</h2>
+      <p>Bạn sẽ được yêu cầu đánh giá một loạt câu phát biểu về LC - từ những điều như việc học Kinh Thánh có diễn ra đều đặn không, ca viên mới có được kèm cặp không, cho đến các sự kiện truyền giảng có được lên kế hoạch với thân hữu trong tâm trí không.</p>
+      <p>Với mỗi câu, bạn sẽ đưa ra hai đánh giá:</p>
+      <ul>
+        <li><b>Hiện tại</b>: mọi thứ đang ở đâu bây giờ, và</li>
+        <li><b>Mong muốn</b>: bạn muốn nó ở đâu.</li>
+      </ul>
     </div>
 
-    <div class="lang-zh">
-      <div class="card">
-        <h2>背景</h2>
-        <p>樂歌(LC)是一個跨教會的青年音樂事工,成立於2002年,圍繞四個策略目標而建立——傳福音、標準化、人才培育與推廣。事工由一個小型、輪替的委員會,以及一群依循既定會籍與服事資格制度成長的成員組成。</p>
+    <div class="card">
+      <h2>Bạn đang đánh giá cái gì?</h2>
+      <p>Với mỗi câu phát biểu, đừng hỏi "điều này có đang được làm tốt không?", thay vào đó hãy hỏi:</p>
+      <p><b>"Nếu những người đang làm điều này rời đi vào ngày mai, nó có còn được duy trì nữa hay không?"</b></p>
+      <p>Hôm nay việc này có thể được thực hiện rất tốt nhưng nếu nó chỉ sống được nhờ một hoặc hai người nào đó và không ai khác đang được hướng dẫn để tiếp nối thì nó không ở "Cấp độ 4".</p>
+      <p>Với từng câu phát biểu, hãy hỏi: <i>có ai đó thực sự đang được huấn luyện để tiếp quản việc này không?</i></p>
+      <ul>
+        <li>Nếu có → <b>Cấp độ 4.</b></li>
+        <li>Nếu nó chỉ đang được làm tốt bởi bất kỳ ai đang làm hiện tại, và không ai khác đang học điều đó → <b>Cấp độ 3.</b></li>
+      </ul>
+      <p class="muted">Nhiều điểm "Cấp độ 3" có thể tạo cảm giác thỏa mãn, vì mọi thứ trông ổn ngay bây giờ. Nhưng hãy thử nhìn theo hướng khác: Cấp độ 3 thực ra là một lời cảnh báo - nó có nghĩa là phương diện này chỉ sống được nhờ một hoặc hai cá nhân, và vấn đề sẽ hiện hữu khi họ không còn đó nữa.</p>
+      <p class="muted">"Cấp độ 3" cũng tạo ra sự cấp bách trong việc tìm người tiếp nối so với "Cấp độ 1" (ban ngành chưa từng làm việc này).</p>
+    </div>
+
+    <div class="card">
+      <h2>Bốn Cấp Độ</h2>
+      <div class="pillbar">
+        <div class="pill l1">L1 Sơ sinh</div><div class="pill l2">L2 Phát triển</div><div class="pill l3">L3 Trưởng thành</div><div class="pill l4">L4 Tiếp nối</div>
       </div>
-      <div class="card">
-        <h2>問題所在</h2>
-        <p>不只是「事工做得好不好」,而是:<b>現在運作得好的部分,有多少是靠現在這些特定的人在撐?如果這些人離開了,還撐得住嗎?</b></p>
-        <p class="muted">一個事工表面上可以看起來很健康——音樂好、群體關係緊密、傳福音有果效——但實際上可能悄悄地只靠一兩個人在支撐幾乎所有事情。這種脆弱在平常看不出來,直到那些人不在了,問題才會一下子變得非常明顯。</p>
-      </div>
-      <div class="card">
-        <h2>這個框架要做什麼</h2>
-        <ol>
-          <li><b>診斷</b>事工目前的成熟度,涵蓋三大支柱——心、藝、宣——使用4級可複製性量表。</li>
-          <li><b>找出落差</b>——現況(As-Is)與目標(To-Be)之間的差距。</li>
-          <li><b>保留分歧作為訊號</b>——小組討論後各自獨立評分,分歧會被保留,不會被平均掉。</li>
-          <li><b>成為2-3年行動計畫的基礎</b>——這一步不在目前的設計階段範圍內,但是最終要走到的地方。</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h2>本框架的檔案</h2>
-        <ul class="filelist">
-          <li><code>CN/00_purpose_zh.md</code> —— 背景、問題、目標 <span class="badge editable">可編輯</span></li>
-          <li><code>CN/01_framework_principles_zh.md</code> —— 量表與陳述句背後的設計原則 <span class="badge locked">不可編輯</span></li>
-          <li><code>CN/02_refined_questionnaire_zh.md</code> —— 9個指標、18句陳述 <span class="badge editable">可編輯</span></li>
-          <li><code>CN/03_rating_guideline_zh.md</code> —— 量表定義、評分紀律、範例 <span class="badge locked">不可編輯</span></li>
-          <li><code>00_vocabulary.md</code> —— 英文/中文/越南文 詞彙對照</li>
-        </ul>
-      </div>
+      <div class="level-def l1"><div class="lvl-tag">Cấp độ 1 — Sơ sinh</div>Điều này về cơ bản không xảy ra trừ khi người dẫn dắt và thúc đẩy nó. Nếu không còn người lãnh đạo, điều này sẽ ngay lập tức dừng lại.</div>
+      <div class="level-def l2"><div class="lvl-tag">Cấp độ 2 — Phát triển</div>Mọi người bắt đầu học tập để thực hành hoặc làm quen với điều này, lúc thì làm tốt, lúc thì không hoặc làm nửa vời. Vẫn cần có người lãnh đạo thúc đẩy.</div>
+      <div class="level-def l3"><div class="lvl-tag">Cấp độ 3 — Trưởng thành</div>Mọi người đã quen với điều này và nhìn chung thực hiện tốt, nhưng có điểm yếu là chỉ một số ít người thực sự có thể dẫn dắt và thúc đẩy việc này. Nếu những người đó rời đi, mọi thứ khả năng sẽ trở về giai đoạn sơ sinh.</div>
+      <div class="level-def l4"><div class="lvl-tag">Cấp độ 4 — Tiếp nối</div>Điều này đã thật sự trở thành một phần văn hóa của ban ngành — không chỉ là thói quen của những người hiện tại. Người có kinh nghiệm chủ động làm mẫu, nhắc nhở, và hướng dẫn để giá trị hay thực hành này được thành viên mới tiếp nhận một cách tự nhiên. Vì vậy, điều này vẫn tiếp tục ngay cả khi những người lãnh đạo hiện tại rời đi.</div>
     </div>
 
   </section>
 
-  <!-- PRINCIPLES -->
-  <section class="view" id="view-principles">
-
-    <div class="lang-en">
-      <div class="card">
-        <h2>What the Scale Actually Measures</h2>
-        <p>The 4-level scale does <b>not</b> measure quality of execution right now. It measures <b>dependency on current people vs. self-sustainability</b>.</p>
-        <div class="pillbar">
-          <div class="pill l1">L1 Infancy</div><div class="pill l2">L2 Youth</div><div class="pill l3">L3 Maturity</div><div class="pill l4">L4 Reproduction</div>
-        </div>
-        <p class="muted">The threshold that matters most is <b>L3 → L4</b>, not L1 → L4. Something can be done excellently today and still score only L3, if it depends on one or two people with no active transmission mechanism.</p>
-      </div>
-      <div class="card">
-        <h2>Design Constraints Applied to Every Statement</h2>
-        <ul class="principles">
-          <li><b>Observable, not attitude-inferred.</b> Statements point to a behavior a group can agree did or didn't happen — not an internal state like "joyful" or "cares deeply."</li>
-          <li><b>Single-barreled.</b> Each statement tests exactly one thing, so a mixed reality has somewhere to go.</li>
-          <li><b>No scale/wording redundancy.</b> Words like "consistently" or "regularly" are removed — the scale already expresses that gradient.</li>
-          <li><b>System, not outcome.</b> Statements test a reproducible system LC controls — not an outcome like someone's personal conversion, or a quality trend like "is the music getting better." Reproducibility is the cause; improvement over time is the expected natural effect of getting the system right — not something worth measuring separately, and potentially misleading if you did (a quality uptick can come from causes unrelated to reproducibility, like a talented new member or an easier repertoire).</li>
-          <li><b>Ministry substance, not organizational mechanics.</b> Governance, elections, onboarding compliance are out of scope.</li>
-          <li><b>LC's actual operational ownership.</b> Statements stay within what LC itself can own — narrowed away from anything owned by a downstream party (e.g. a host church).</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Architecture</h2>
-        <p>3 pillars × 3 indicators × 2 statements = 18 statements total.</p>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>Pillar</th><th>Indicators</th></tr>
-          <tr><td>1 — The Heart (spiritual)</td><td>Scriptural &amp; Prayer Foundations · Ministry Identity · Community Care &amp; Unity</td></tr>
-          <tr><td>2 — The Art (musical/generational)</td><td>Vocal Development · Instrumental Musicianship · Conducting &amp; Musical Direction</td></tr>
-          <tr><td>3 — The Mission (evangelistic)</td><td>Outreach Intentionality · Total Mobilization · Event Structure Reproducibility</td></tr>
-        </table></div>
-        <p class="muted" style="margin-top:10px;">Pillar 2 was redesigned around the three role-types LC's music actually depends on (vocal, instrumental, conducting) rather than a generic function-based split, so each indicator maps to a distinct kind of person the ministry needs to reproduce.</p>
-      </div>
-      <div class="card">
-        <h2>Data Collection Method</h2>
-        <p>Small-group discussion, but <b>individual, per-person submission</b>. Aggregation preserves the spread of ratings — "5 said Maturity, 3 said Youth" is retained as a finding, not smoothed into an average.</p>
+  <!-- ASSESSMENT -->
+  <section class="view" id="view-assessment">
+    <div class="assessment-sticky" id="assessment-sticky">
+      <div class="pillar-tabs">
+        <div class="pillar-tab active" data-p="1">Trụ Cột 1 · Thuộc Linh</div>
+        <div class="pillar-tab" data-p="2">Trụ Cột 2 · Âm Nhạc</div>
+        <div class="pillar-tab" data-p="3">Trụ Cột 3 · Sứ Mệnh</div>
       </div>
     </div>
 
-    <div class="lang-zh">
-      <div class="card">
-        <h2>這個量表到底在測什麼</h2>
-        <p>這4級量表<b>不是</b>測現在做得好不好,而是測<b>這件事有多依賴現在的人,還是已經能自己延續下去</b>。</p>
-        <div class="pillbar">
-          <div class="pill l1">1級 嬰兒期</div><div class="pill l2">2級 成長期</div><div class="pill l3">3級 成熟期</div><div class="pill l4">4級 傳承期</div>
-        </div>
-        <p class="muted">最關鍵的分界線是<b>3級 → 4級</b>,不是1級 → 4級。某件事現在做得很好,還是可能只拿到3級——如果它只靠一兩個人,而且沒有任何機制在教別人接手。</p>
-      </div>
-      <div class="card">
-        <h2>每句陳述都遵循的設計原則</h2>
-        <ul class="principles">
-          <li><b>可觀察,不是用來推測內心感受。</b> 陳述句指向一群人能夠對「有沒有發生」達成共識的行為——不是「喜樂」、「深深關心」這類內心狀態。</li>
-          <li><b>一句只測一件事。</b> 每句只測一個具體做法,混雜的現實才有地方被評出來。</li>
-          <li><b>不跟量表本身重複用詞。</b> 「持續地」、「經常地」這類字眼被拿掉——量表本身已經表達了這個穩定程度。</li>
-          <li><b>測系統,不是測結果。</b> 陳述句測LC能掌控的可複製系統——不是決志信主這類結果,也不是「音樂有沒有變好」這種品質趨勢。可複製性是「因」,水準隨時間進步是把系統做對後自然會發生的「果」——不需要另外去測,而且直接測反而可能誤導(水準提升也可能來自跟可複製性無關的原因,例如剛好來了一位有天賦的新成員,或曲目比較簡單)。</li>
-          <li><b>事工核心內涵,不是行政運作。</b> 治理、選舉、新人報到流程不在範圍內。</li>
-          <li><b>LC自己實際能掌控的部分。</b> 碰到下游單位才能掌控的事,會被縮小成LC自己能掌控的部分。</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>架構</h2>
-        <p>3個支柱 × 3個指標 × 2句陳述 = 共18句陳述。</p>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>支柱</th><th>指標</th></tr>
-          <tr><td>1 —— 心(靈命)</td><td>查經與禱告根基 · 事奉身分認同 · 群體關懷與合一</td></tr>
-          <tr><td>2 —— 藝(音樂/世代)</td><td>人聲培育 · 樂器演奏能力 · 指揮與音樂總監</td></tr>
-          <tr><td>3 —— 宣(福音影響力)</td><td>外展意圖 · 全體動員 · 活動架構可複製性</td></tr>
-        </table></div>
-        <p class="muted" style="margin-top:10px;">支柱二已經重新設計,改成圍繞LC音樂實際仰賴的三種角色(人聲、樂器演奏、指揮),而不是原本以功能區分的方式,讓每個指標對應一種事工需要複製的具體角色。</p>
-      </div>
-      <div class="card">
-        <h2>資料蒐集方式</h2>
-        <p>小組討論,但<b>個人、獨立提交評分</b>。彙整時保留評分的分佈——「5人打成熟期、3人打成長期」這個結果本身就會被保留當作發現,不會被平均掉。</p>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- QUESTIONNAIRE -->
-  <section class="view" id="view-questionnaire">
-    <div class="card" style="margin-bottom:14px;">
-      <p class="muted lang-en" style="margin:0;">Click a statement to expand its maturity cues (L1–L4). This is a browsing view only — no ratings are recorded.</p>
-      <p class="muted lang-zh" style="margin:0;">點選任一陳述句可展開它的成熟度提示(1-4級)。這只是瀏覽用的畫面——不會記錄任何評分。</p>
-    </div>
-
-    <div class="pillar-tabs">
-      <div class="pillar-tab active" data-p="1"><span class="lang-en">Pillar 1 · The Heart</span><span class="lang-zh">支柱一 · 心</span></div>
-      <div class="pillar-tab" data-p="2"><span class="lang-en">Pillar 2 · The Art</span><span class="lang-zh">支柱二 · 藝</span></div>
-      <div class="pillar-tab" data-p="3"><span class="lang-en">Pillar 3 · The Mission</span><span class="lang-zh">支柱三 · 宣</span></div>
-    </div>
-
-    <div id="questionnaire-root"></div>
-  </section>
-
-  <!-- GUIDELINE -->
-  <section class="view" id="view-guideline">
-
-    <div class="lang-en">
-      <div class="card">
-        <h2>Universal Rating Scale</h2>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>Level</th><th>Definition</th></tr>
-          <tr><td><b>L1 · Infancy</b></td><td>The fellowship cannot do this at all and requires constant outside support or leader drive to function.</td></tr>
-          <tr><td><b>L2 · Youth</b></td><td>Does this inconsistently; some parts function, many parts fail.</td></tr>
-          <tr><td><b>L3 · Maturity</b></td><td>The current core team has mastered this, but the knowledge is limited to them. They have not trained others.</td></tr>
-          <tr><td><b>L4 · Reproduction</b></td><td>A clear system naturally encourages, trains, and produces the next generation to take over.</td></tr>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>⚠️ Rating Discipline</h2>
-        <p>Only score <b>L4</b> if you can point to an actual, ongoing practice — mentoring, rotation, intentional modeling with explanation — transmitting this to newer members. If it's simply true right now but nobody is deliberately passing it on, the honest score is <b>L3</b>.</p>
-        <p class="muted">A high "Maturity" score should be read as a <b>warning about hidden risk</b>, not good news — it means the area is healthy today but has a single point of failure.</p>
-      </div>
-      <div class="card">
-        <h2>Worked Example — System-Type Statement</h2>
-        <p class="muted">Statement 1.1: "The fellowship runs a consistent, structured Bible study series as a regular part of weekly gatherings."</p>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>Level</th><th>What a rater would observe</th></tr>
-          <tr><td>Infancy</td><td>Only happens on weeks the Director personally prepares and pushes it; without them, it doesn't happen.</td></tr>
-          <tr><td>Youth</td><td>Happens most weeks, but patchy — some weeks solid, some skipped or rushed.</td></tr>
-          <tr><td>Maturity</td><td>Happens consistently, well-prepared, good discussion — but only one specific person can lead it.</td></tr>
-          <tr><td>Reproduction</td><td>Multiple people take turns preparing/leading it, and newer members are actively being coached into taking a turn.</td></tr>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>Worked Example — Paired Statements (9.1 / 9.2)</h2>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>9.1 Structured</th><th>9.2 Unstructured</th><th>What it suggests</th></tr>
-          <tr><td>High</td><td>High</td><td>Genuinely reproducible on both fronts — the healthiest state.</td></tr>
-          <tr><td>High</td><td>Low</td><td>Well-drilled on tradition, but no bench strength for creativity.</td></tr>
-          <tr><td>Low</td><td>High</td><td>Creatively strong, but hasn't institutionalized its own recurring events.</td></tr>
-          <tr><td>Low</td><td>Low</td><td>Both capabilities concentrated in one or two people — highest-risk state.</td></tr>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>How to Score as a Committee</h2>
-        <ol>
-          <li>Small-group discussion first — share perspectives and disagreements openly.</li>
-          <li>Individual submission always — each person rates on their own, anonymously.</li>
-          <li>Rate both As-Is and To-Be for every statement.</li>
-          <li>The spread matters as much as the number — a wide spread is itself a finding worth surfacing.</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="lang-zh">
-      <div class="card">
-        <h2>通用評分量表</h2>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>等級</th><th>定義</th></tr>
-          <tr><td><b>1級 · 嬰兒期</b></td><td>團契完全做不到這件事,需要外部持續協助或負責人強力推動才有辦法運作。</td></tr>
-          <tr><td><b>2級 · 成長期</b></td><td>做得不穩定;有些部分還可以,但很多部分做不到。</td></tr>
-          <tr><td><b>3級 · 成熟期</b></td><td>現在的核心團隊已經很會做這件事,但這個能力只有他們會,沒有教其他人。</td></tr>
-          <tr><td><b>4級 · 傳承期</b></td><td>有一套明確的系統,會自然鼓勵、訓練並培養下一代來接手。</td></tr>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>⚠️ 評分紀律</h2>
-        <p>只有在你能具體指出一個真實、正在進行的做法——師徒帶領、輪替、刻意示範並解釋——正在把這個能力傳給新人時,才能打<b>4級</b>。如果現在真的存在,但沒有人刻意在傳承,誠實的分數是<b>3級</b>。</p>
-        <p class="muted">「成熟期」的高分應該被解讀成一個關於<b>隱藏風險的警訊</b>,而不只是好消息——表示這個領域現在看起來很健康,但其實只有一個(或很少)關鍵人物撐著。</p>
-      </div>
-      <div class="card">
-        <h2>評分範例 —— 系統類陳述句</h2>
-        <p class="muted">陳述1.1:「團契每週聚會中,固定有一套結構性的查經(逐章研讀),作為固定的一部分。」</p>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>等級</th><th>評分者會觀察到什麼</th></tr>
-          <tr><td>嬰兒期</td><td>只有牧者/負責人親自準備並推動的那幾週才會有查經,沒有他就不會有。</td></tr>
-          <tr><td>成長期</td><td>大部分週次都有,但時好時壞——有些週次很扎實,有些被跳過或匆匆帶過。</td></tr>
-          <tr><td>成熟期</td><td>穩定進行,準備充分,討論品質好——但只有一個特定的人能帶。</td></tr>
-          <tr><td>傳承期</td><td>好幾個人輪流準備、帶領,新人也正在被培養、練習接手。</td></tr>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>評分範例 —— 成對陳述句(9.1 / 9.2)</h2>
-        <div class="table-scroll"><table class="worked">
-          <tr><th>9.1 結構化</th><th>9.2 自由創作</th><th>代表的意思</th></tr>
-          <tr><td>高</td><td>高</td><td>兩方面都真正可複製——最健康的狀態。</td></tr>
-          <tr><td>高</td><td>低</td><td>傳統的部分很扎實,但創意的部分沒有儲備人才。</td></tr>
-          <tr><td>低</td><td>高</td><td>創意能力強,但還沒把自己的固定活動制度化。</td></tr>
-          <tr><td>低</td><td>低</td><td>兩種能力都集中在一兩個人身上——風險最高的狀態。</td></tr>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>委員會如何評分</h2>
-        <ol>
-          <li>先小組討論——公開分享看法與分歧。</li>
-          <li>一律個人獨立提交——每個人各自、匿名評分。</li>
-          <li>每一句都要評「現況」與「目標」兩個分數。</li>
-          <li>分佈跟數字一樣重要——分數分散本身就是值得討論的發現。</li>
-        </ol>
-      </div>
-    </div>
-
+    <div id="assessment-root" style="margin-top:16px;"></div>
   </section>
 
 </main>
 
 <script>
-const LEVELS = {
-  en: ["Infancy","Youth","Maturity","Reproduction"],
-  zh: ["嬰兒期","成長期","成熟期","傳承期"]
-};
+const LEVELS = ["Sơ sinh","Phát triển","Trưởng thành","Tiếp nối"];
 const LEVEL_CLASS = ["l1","l2","l3","l4"];
 
-// pillar/indicator/statement data, keyed by language
-const DATA = {
-en: [
-  { pillar: 1, name: "The Heart", subtitle: "Spiritual Maturity", desc: "Measures the inner spiritual life and structural unity of the fellowship as a single group.",
+const DATA = [
+  { pillar: 1, name: "Thuộc Linh", desc: "Đo lường sự trưởng thành trong đời sống thuộc linh, tâm thế phục vụ khiêm nhường, và sự hiệp nhất của cả ban ngành.",
     indicators: [
-      { name: "Indicator 1: Scriptural & Prayer Foundations", statements: [
-        { id:"1.1", title:"Scriptural Foundation", quote:"The fellowship runs a consistent, structured Bible study series (studied chapter by chapter) as a regular part of weekly gatherings.",
-          cues:["Only happens when the Director personally drives it","Happens most weeks, patchy","Happens well, but only one person can lead it","Multiple people take turns leading, newer members coached in"]},
-        { id:"1.2", title:"Group Prayer", quote:"The fellowship sets aside dedicated, focused time for group prayer — distinct from the brief prayers that open or close rehearsals.",
-          cues:["Doesn't happen unless the leader initiates it each time","Happens sometimes, inconsistently","Happens well, but only one or two people know how to lead it meaningfully","Several members rotate leading it, and others are being coached to lead it too"]}
+      { num: 1, name: "Tiêu Chí 1: Nền Tảng Kinh Thánh & Cầu Nguyện", statements: [
+        { id:"1.1", title:"Nền tảng Kinh Thánh", quote:"Ban ngành tổ chức học Kinh Thánh một cách có hệ thống (học theo từng sách từng chương) như một phần nội dung chính của các buổi nhóm hàng tuần.",
+          cues:["diễn ra lẻ tẻ, tự phát, và không có hệ thống; chỉ xảy ra khi có người chủ động khởi xướng và duy trì việc lên kế hoạch","có tổ chức trong một khoảng thời gian nhưng không đều đặn qua các năm; vẫn cần một người cụ thể liên tục thúc đẩy để duy trì","việc học được tổ chức có hệ thống và kế hoạch rõ ràng, nhưng chỉ số ít người có thể hướng dẫn","nhiều người thay phiên hướng dẫn, người mới được huấn luyện để dự phần"]},
+        { id:"1.2", title:"Cầu nguyện nhóm", quote:"Ban ngành dành riêng thời gian tập trung cho việc cầu nguyện nhóm, không tính phần cầu nguyện mở đầu hoặc kết thúc buổi nhóm/buổi tập.",
+          cues:["không diễn ra trừ khi có người khởi xướng","thỉnh thoảng xảy ra, không ổn định","diễn ra thường xuyên, nhưng chỉ một hoặc hai người biết cách hướng dẫn","nhiều thành viên thay phiên hướng dẫn, và những người khác đang được huấn luyện để hướng dẫn"]}
       ]},
-      { name: "Indicator 2: Ministry Identity (Platform Attitude)", statements: [
-        { id:"2.1", title:"Behind-the-Scenes Attitude", quote:"When members are assigned behind-the-scenes roles, they take them on without pushback, complaint, or repeated requests to be moved to a front-row/solo role.",
-          cues:["Assigning backstage roles causes friction, a leader must smooth it over each time","Some accept it, some push back, depends who's assigned","Current members accept it well, but no one is deliberately shaping newcomers into that posture","There's a visible practice (mentoring, onboarding norm) that actively forms this attitude in new members"]},
-        { id:"2.2", title:"Platform Succession", quote:"Experienced veterans voluntarily give up front-row/solo spots to younger members, without needing to be asked by a leader.",
-          cues:["Veterans hold onto spots, a leader has to ask them to step back","Happens occasionally, inconsistently","Veterans do step back well now, but it's personal maturity, not a deliberate practice","Stepping back is modeled and explicitly taught to veterans as they mature"]}
+      { num: 2, name: "Tiêu Chí 2: Tâm Thế Phục Vụ", statements: [
+        { id:"2.1", title:"Thái độ với vai trò hậu trường", quote:"Khi được giao vai trò hậu trường, thành viên đảm nhận mà không phản kháng, phàn nàn, hay yêu cầu chuyển sang vai trò nổi bật hơn (trên sân khấu/solo).",
+          cues:["thành viên thường phản kháng hoặc phàn nàn khi được giao vai trò hậu trường; chỉ khi người hướng dẫn trực tiếp can thiệp thì họ mới miễn cưỡng chấp nhận","một số chấp nhận, một số phản kháng, tùy người được giao","thành viên hiện tại chấp nhận tốt, nhưng chưa thể định hình thành viên mới theo tinh thần đó","đây là văn hóa rõ ràng của ban ngành; thành viên hiện tại chủ động làm gương và nhắc nhở, giúp thành viên mới tiếp nhận thái độ này một cách tự nhiên ngay từ khi mới tham gia"]},
+        { id:"2.2", title:"Sẵn lòng hạ mình", quote:"Các thành viên kỳ cựu nhường vị trí trình diễn/solo cho thành viên trẻ hơn.",
+          cues:["thành viên kỳ cựu giữ các vị trí trình diễn/solo cho riêng mình, không nhường lại cho người trẻ hơn dù có cơ hội","thỉnh thoảng xảy ra, nhưng chưa rõ sự chủ động, phụ thuộc nhiều vào tình huống","thành viên kỳ cựu chủ động nhường cho người trẻ hơn, nhưng chủ yếu dựa vào nỗ lực cá nhân của số ít người","việc hạ mình đã trở thành một phần văn hóa của ban ngành; thành viên kỳ cựu chủ động làm mẫu cho người mới, giúp họ thấy đây là điều tự nhiên khi trưởng thành trong nhóm, không chỉ dựa vào ý thức cá nhân của một vài người"]}
       ]},
-      { name: "Indicator 3: Community Care & Unity", statements: [
-        { id:"3.1", title:"Burden Sharing", quote:"Members regularly stay after rehearsals for unstructured time, and it's common (not rare) for someone to bring up a personal struggle and have others respond to it.",
-          cues:["Doesn't happen without a leader engineering it","Happens sometimes, depends on mood/who's around","Happens well, but relies on the current group's chemistry, not any deliberate practice","Unstructured time is a standing, intentional practice actively passed down as \"how we do things\""]},
-        { id:"3.2", title:"Intergenerational Care", quote:"Senior members intentionally look out for, encourage, and mentor junior members in the group.",
-          cues:["Junior members are largely left on their own","Some seniors look out for juniors, inconsistently","Seniors reliably mentor juniors, but only because of who the current seniors happen to be","Mentoring juniors is an explicit expectation actively taught to new seniors as they come up"]}
+      { num: 3, name: "Tiêu Chí 3: Quan Tâm & Hiệp Nhất", statements: [
+        { id:"3.1", title:"Quan tâm chia sẻ gánh nặng", quote:"Các thành viên cởi mở chia sẻ một khó khăn cá nhân với nhóm, và những người khác đáp lại bằng lời khích lệ, cầu thay, và sự giúp đỡ.",
+          cues:["thành viên thường giữ kín khó khăn nan đề của mình; chỉ chia sẻ khi người hướng dẫn trực tiếp dẫn dắt","việc chia sẻ thỉnh thoảng xảy ra, phụ thuộc rất nhiều vào hoàn cảnh, tâm trạng, hoặc ai đang có mặt","thường xuyên diễn ra, phụ thuộc vào sự hòa hợp và tin tưởng hiện có của nhóm, dựa vào số ít người để thúc đẩy cuộc trò chuyện","diễn ra một cách tự nhiên và là một phần văn hóa của ban ngành; các thành viên có kinh nghiệm chủ động làm mẫu (cởi mở chia sẻ, chủ động hỏi thăm người khác), giúp thành viên mới thấy đây là điều bình thường và học theo"]},
+        { id:"3.2", title:"Sự hiệp một", quote:"Thành viên lớn tuổi (Senior) quan tâm, khích lệ, và cố vấn cho thành viên nhỏ tuổi hơn (Junior) trong nhóm.",
+          cues:["Junior phần lớn tự xoay xở một mình, có sự ngăn cách thế hệ rõ rệt","một số Senior quan tâm đến các Junior, nhưng không thường xuyên và phụ thuộc vào mối quan hệ cá nhân","một số Senior tích cực quan tâm và giúp đỡ Junior rất tốt, nhưng đó là vì tính cách sẵn có của những cá nhân này — chưa có gì đảm bảo các Senior khác cũng sẽ làm điều tương tự","việc cố vấn cho Junior là một việc rõ ràng và tự nhiên; Senior chủ động làm mẫu và hướng dẫn Junior, và thái độ này được tiếp nối bởi các Senior tương lai (những Junior hiện tại)"]}
       ]}
     ]
   },
-  { pillar: 2, name: "The Art", subtitle: "Musical & Generational Health", desc: "Measures the reproducibility of musical ability and leadership across the three role-types that carry LC's music — vocal, instrumental, and conducting — rather than treating \"musicianship\" as one generic category.",
+  { pillar: 2, name: "Âm Nhạc", desc: "Đo lường khả năng kế thừa năng lực âm nhạc và lãnh đạo qua ba vai trò: ban hát, ban nhạc, và ca trưởng.",
     indicators: [
-      { name: "Indicator 4: Vocal Development", statements: [
-        { id:"4.1", title:"Vocal Practice System", quote:"Vocalists have a defined practice expectation (warm-ups, pitch accuracy, diction) that's reinforced as part of rehearsal culture, not left to each singer's personal initiative.",
-          cues:["No expectation is set, vocal prep is inconsistent","Some vocalists prepare, others don't, nothing reinforces it","Current vocalists are disciplined about this, but nothing actively instills it in new vocalists","An active practice (vocal coaching, onboarding expectation) instills this in new vocalists regardless of who's currently here"]},
-        { id:"4.2", title:"Vocal Succession", quote:"Experienced vocalists (leads, harmony parts) spend regular one-on-one time coaching newer vocalists to take over specific vocal parts or lead roles.",
-          cues:["No vocal coaching happens","Occasional, informal","Some 1:1 coaching happens, but it depends entirely on one or two current vocal leads, and newer vocalists rarely get real lead/part opportunities","Vocal coaching is a standing, expected practice, and newer vocalists are actually given real lead/part opportunities on platform, not just private coaching time"]}
+      { num: 4, name: "Tiêu Chí 4: Ban Hát", statements: [
+        { id:"4.1", title:"Tiêu chuẩn của Ban Hát", quote:"Có tiêu chuẩn và kỳ vọng về việc chuẩn bị và tập luyện của ca viên.",
+          cues:["không có tiêu chuẩn hay kỳ vọng nào được thiết lập; việc chuẩn bị hoàn toàn tùy thuộc vào từng ca viên","có một số kỳ vọng được đặt ra nhưng không được duy trì, ca viên nào tự giác thì làm, ai không thì thôi, không ai theo dõi hay nhắc nhở","tiêu chuẩn và kỳ vọng hiện đang được tuân thủ tốt, nhưng đó là nhờ ý thức của nhóm ca viên hiện tại, chứ chưa có gì đảm bảo ca viên mới sẽ được dạy hay yêu cầu làm theo","tiêu chuẩn này được duy trì và truyền lại cho ca viên mới (qua hướng dẫn và huấn luyện), nên vẫn được giữ vững bất kể ai đang có mặt"]},
+        { id:"4.2", title:"Tính kế thừa của Ban Hát", quote:"Ca viên có kinh nghiệm dành thời gian kèm cặp một-một hoặc tổ chức lớp tập huấn để huấn luyện ca viên mới.",
+          cues:["không có bất cứ sự kèm cặp hay workshop nào","thỉnh thoảng có tổ chức vài buổi huấn luyện, không đều đặn qua mỗi năm","tổ chức các buổi huấn luyện tập thể hoặc một-một, nhưng hoàn toàn phụ thuộc vào một hoặc hai người lĩnh xướng hiện tại","việc kèm cặp không chỉ phụ thuộc vào một hoặc hai người, mà nhiều ca viên có kinh nghiệm cùng tham gia huấn luyện; ca viên mới thực sự được trao cơ hội đảm nhận vai trò quan trọng trong dàn hợp xướng"]}
       ]},
-      { name: "Indicator 5: Instrumental Musicianship", statements: [
-        { id:"5.1", title:"Instrumental Succession", quote:"Experienced instrumentalists spend regular one-on-one time coaching a newer musician to take over their specific instrument or part.",
-          cues:["No one is shadowing or coaching anyone","Happens occasionally, informally","Some 1:1 coaching happens, but entirely dependent on one or two current mentors, and newer instrumentalists rarely get real playing opportunities","Shadow-coaching is a standing, expected practice, and newer instrumentalists are actually given real playing roles in performances, not just backstage practice"]},
-        { id:"5.2", title:"Band Leadership Development", quote:"There is a deliberate practice of training and giving a potential next band leader real opportunities to lead the instrumental section (cueing dynamics, coordinating transitions, leading run-throughs) — not just relying on the current one.",
-          cues:["No one is being developed toward leading the band","Happens occasionally, ad hoc","The current band leader is skilled, but no one else is being given real band-leading opportunities","There's a deliberate pipeline giving rising instrumentalists real band-leading experience"]}
+      { num: 5, name: "Tiêu Chí 5: Ban Nhạc", statements: [
+        { id:"5.1", title:"Nhân sự dự bị", quote:"Mỗi nhạc cụ trong ban nhạc có nhân sự dự bị đang được đào tạo để có thể đảm nhận vị trí đó khi cần.",
+          cues:["không có nhân sự dự bị nào đang được chuẩn bị; nếu một nhạc công rời đi, vị trí đó bị bỏ trống hoặc phải tìm người từ bên ngoài","một vài nhạc cụ có nhân sự dự bị không chính thức, phần lớn còn lại không có, và nhạc công dự bị hiếm khi có cơ hội hầu việc thực sự","hầu hết nhạc cụ có một nhân sự dự bị, nhưng việc này phụ thuộc vào một hoặc hai người cố vấn hiện tại chủ động kèm cặp","mỗi nhạc cụ đều có ít nhất hai nhân sự dự bị đang được đào tạo một cách ổn định (qua kèm cặp hoặc lớp tập huấn), và họ thực sự được trao cơ hội hầu việc trong các buổi nhóm"]},
+        { id:"5.2", title:"Đào tạo trưởng ban nhạc", quote:"Thành viên ban nhạc tiềm năng được huấn luyện và trao cơ hội thực sự để chỉ huy (dẫn dắt ban nhạc tập luyện, đưa ra quyết định phối khí).",
+          cues:["không ai đang được đào tạo để đảm nhận vai trò này; nếu trưởng ban nhạc hiện tại vắng mặt, không ai khác có thể dẫn dắt buổi tập hay quyết định phối khí","thỉnh thoảng có người được thử giao một việc nhỏ (ví dụ: dẫn dắt một đoạn tập luyện), nhưng không có kế hoạch rõ ràng hay nhất quán","có một thành viên ban nhạc đang được trao cơ hội thực sự (chỉ huy buổi tập, quyết định phối khí) một cách khá đều đặn, nhưng hoàn toàn phụ thuộc vào việc trưởng ban nhạc hiện tại chủ động làm điều này; nếu người đó ngừng lại, việc phát triển người kế nhiệm cũng dừng theo","nhiều thành viên ban nhạc có tiềm năng đều có thể được huấn luyện và thử sức, việc này được tiến hành liên tục, không còn phụ thuộc vào trưởng ban nhạc hiện tại"]}
       ]},
-      { name: "Indicator 6: Conducting & Musical Direction", statements: [
-        { id:"6.1", title:"Conducting Practice", quote:"The conductor/musical director prepares for each rehearsal in advance (score study, rehearsal plan, arrangement decisions) rather than deciding in the moment.",
-          cues:["No advance preparation, direction is made up on the spot","Some rehearsals are prepared, others aren't","The current conductor prepares excellently, but no one else is being shown how this preparation is done","The discipline of preparation is visibly modeled and taught to whoever might conduct next"]},
-        { id:"6.2", title:"Next Conductor Development", quote:"There is a deliberate practice of training and giving a potential next conductor/musical director real opportunities (leading rehearsal segments, making arrangement decisions) — not just relying on the current one.",
-          cues:["No one is being developed toward conducting","Happens occasionally, ad hoc","The current conductor is skilled, but no one else is being given real conducting opportunities","There's a deliberate pipeline giving rising musicians real conducting/directing experience"]}
+      { num: 6, name: "Tiêu Chí 6: Ca Trưởng", statements: [
+        { id:"6.1", title:"Tiêu chuẩn của Ca Trưởng", quote:"Có tiêu chuẩn và kỳ vọng về việc chuẩn bị trước mỗi buổi tập (nghiên cứu bản nhạc, kế hoạch tập luyện, quyết định phối khí) cho vai trò ca trưởng.",
+          cues:["không có tiêu chuẩn hay kỳ vọng nào được thiết lập cho việc chuẩn bị; việc này hoàn toàn tùy thuộc vào thói quen cá nhân của người đang giữ vai trò ca trưởng","có một số kỳ vọng được nhắc đến nhưng không rõ ràng hay được duy trì; tùy người đang giữ vai trò có tự giác chuẩn bị hay không","ca trưởng hiện tại chuẩn bị tốt và nhất quán, nhưng đó là nhờ thói quen cá nhân của người này, chứ chưa có tiêu chuẩn nào được xác lập rõ ràng cho vai trò để người kế nhiệm biết và làm theo","tiêu chuẩn chuẩn bị cho vai trò ca trưởng đã được xác lập rõ ràng (ví dụ: được ghi lại hoặc truyền đạt cụ thể cho người kế nhiệm), nên bất kỳ ai đảm nhận vai trò này trong tương lai đều biết và được kỳ vọng làm theo, không phụ thuộc vào thói quen của riêng một cá nhân"]},
+        { id:"6.2", title:"Đào tạo Ca Trưởng", quote:"Có một thực hành chủ đích để huấn luyện và trao cho một ca trưởng/nhạc trưởng tiềm năng những cơ hội thực sự (dẫn dắt các đoạn tập luyện, đưa ra quyết định phối khí) — chứ không chỉ dựa vào người hiện tại.",
+          cues:["không ai đang được phát triển để chỉ huy","thỉnh thoảng xảy ra, không có kế hoạch","ca trưởng hiện tại giỏi, nhưng không ai khác được trao cơ hội chỉ huy thực sự","có một lộ trình chủ đích trao cho nhạc công đang lên những kinh nghiệm chỉ huy/điều khiển thực sự"]}
       ]}
     ]
   },
-  { pillar: 3, name: "The Mission", subtitle: "Evangelistic Impact", desc: "Measures the effectiveness of event targeting, deployment of non-musical teams, and reproducibility of LC's own signature evangelistic events.",
+  { pillar: 3, name: "Sứ Mệnh", desc: "Đo lường tính bền vững của sứ mệnh truyền giảng qua ba khía cạnh: nội dung chương trình, năng lực tổ chức sự kiện, và tính liên kết với các Hội Thánh khác.",
     indicators: [
-      { name: "Indicator 7: Outreach Intentionality", statements: [
-        { id:"7.1", title:"Guest-Centric Design", quote:"When planning an outreach event, the team deliberately reviews music, themes, and spoken content through the lens of 'would someone with no church background follow this' — and changes things based on that review.",
-          cues:["No one considers the outsider's perspective","Sometimes considered, inconsistently","The review happens well, but relies on one or two people who \"get it\"","Reviewing content through a guest lens is a built-in planning step taught to whoever plans next"]},
-        { id:"7.2", title:"Gospel Presentation", quote:"The message of the Cross and salvation is presented clearly during musical events.",
-          cues:["The gospel isn't clearly presented","Sometimes clear, sometimes muddled","It's presented clearly now, but only because of one specific gifted speaker","Multiple people are equipped and given opportunity to present it clearly"]}
+      { num: 7, name: "Tiêu Chí 7: Chủ Đích Trong Truyền Giảng", statements: [
+        { id:"7.1", title:"Nội dung lấy Phúc Âm làm trọng tâm", quote:"Khi lên kế hoạch cho một buổi truyền giảng, đội ngũ cẩn thận xem xét liệu bài hát, tiết mục, hay các phần trong chương trình có thực sự chứa đựng sứ điệp Thập Tự Giá và sự cứu rỗi hay không, chứ không chỉ dựa vào giá trị trình diễn hay giải trí.",
+          cues:["tiết mục được chọn ưu tiên cho giá trị trình diễn/giải trí thay vì nội dung Phúc Âm","thỉnh thoảng được cân nhắc, tùy vào việc ai là người phụ trách nội dung","việc lựa chọn được tiến hành cẩn trọng, nhưng phụ thuộc vào số ít người \"am hiểu điều đó\" về mặt thuộc linh, không có quy trình rõ ràng","việc cân nhắc khía cạnh Phúc Âm là một bước có sẵn trong quy trình lên kế hoạch, được dạy cho bất kỳ ai lên kế hoạch nội dung tiếp theo"]},
+        { id:"7.2", title:"Thiết kế lấy thân hữu làm trọng tâm", quote:"Khi lên kế hoạch cho một buổi truyền giảng, đội ngũ cẩn trọng xem xét liệu âm nhạc, chủ đề, và từ ngữ được dùng có được trình bày theo cách mà một thân hữu chưa quen thuộc với Hội Thánh có thể hiểu và tiếp nhận được hay không.",
+          cues:["không ai cân nhắc góc nhìn của thân hữu","góc nhìn của thân hữu được cân nhắc, nhưng không bao phủ toàn bộ khía cạnh, không thường xuyên và nhất quán","được cân nhắc một cách đầy đủ, nhưng phụ thuộc vào số ít người \"có kinh nghiệm\"","luôn được cân nhắc mỗi khi thiết kế chương trình, việc rà soát nội dung qua lăng kính thân hữu là một bước có sẵn trong quy trình lên kế hoạch, được dạy cho bất kỳ ai lên kế hoạch tiếp theo chứ không phụ thuộc vào số ít người"]}
       ]},
-      { name: "Indicator 8: Total Mobilization", statements: [
-        { id:"8.1", title:"Role Coverage", quote:"Every event has specific non-musical roles (sound, media, hospitality, setup) filled by named individuals with a defined responsibility — not covered informally by whoever happens to be free that day.",
-          cues:["Off-stage needs are covered by whoever is free that day, no one holds a fixed role","Some roles have a fixed person, others still get scrambled last-minute","All roles are reliably filled, but it's always the same small group of people","All roles are reliably filled, and the pool of people who can fill them keeps expanding to new members"]},
-        { id:"8.2", title:"Onboarding Into Service", quote:"A member who joins without a musical role is given a specific non-musical assignment — not left to simply observe — within their first few events.",
-          cues:["New non-musical members usually aren't given anything, no one thinks to include them","Sometimes assigned, depends on whether someone happens to notice them","New members are reliably assigned quickly, but only because one specific person makes a point of doing it","There's a standing onboarding step (checklist, buddy system) that ensures this, run by multiple people"]}
+      { num: 8, name: "Tiêu Chí 8: Năng Lực Tổ Chức Sự Kiện", statements: [
+        { id:"8.1", title:"Khả năng tổ chức sự kiện", quote:"Đội ngũ có thể tổ chức và thực hiện trọn vẹn một sự kiện (truyền giảng, chia sẻ Thánh Ca, thờ phượng âm nhạc, v.v..).",
+          cues:["không thể thực hiện sự kiện nếu thiếu một hoặc hai người cụ thể; cả vai trò ngoài âm nhạc lẫn cấu trúc chương trình đều phụ thuộc vào họ","vẫn thực hiện được nhưng chông chênh, có sai sót rõ rệt khi thiếu người đó, dù ở phần vai trò hay cấu trúc chương trình","thực hiện trôi chảy, nhưng vẫn phụ thuộc vào một hoặc hai người \"biết cách làm\" và lấp đầy vai trò còn thiếu","nhiều người biết cấu trúc chương trình và có thể đảm nhận các vai trò cần thiết; kiến thức và vai trò đã được truyền lại hoặc ghi lại, không phụ thuộc vào riêng ai"]}
       ]},
-      { name: "Indicator 9: Event Structure Reproducibility", statements: [
-        { id:"9.1", title:"Structured Execution", quote:"The team can plan and run the two fixed annual services — working within their traditional structure (theme, songs, rundown) — without depending on one specific person who 'knows how it's always done.'",
-          cues:["Can't run the fixed services without one specific person","Runs, but shakily, mistakes happen without that person","Runs smoothly, but still depends on one person who \"knows how it's done\"","Multiple people know and can run the structure; knowledge is documented or passed on"]},
-        { id:"9.2", title:"Unstructured Creation", quote:"When organizing an ad-hoc service with no fixed format, the team can generate and execute a new concept together — without one specific person having to originate the creative direction.",
-          cues:["No one can originate a new concept without one specific person","Happens, but weakly, without much originality","A new concept gets created well, but only because one specific person originates it","Multiple people can originate and execute new concepts, not just one"]}
+      { num: 9, name: "Tiêu Chí 9: Liên Kết Các Hội Thánh", statements: [
+        { id:"9.1", title:"Kết nối và hỗ trợ Hội Thánh khác", quote:"Chủ động tổ chức hoặc hỗ trợ các hoạt động thánh nhạc cho các hội thánh khác (ví dụ: huấn luyện, hội thảo chung) không chỉ giới hạn trong nội bộ ban ngành.",
+          cues:["hoàn toàn không có hoạt động nào hướng ra ngoài; mọi nỗ lực chỉ giới hạn trong nội bộ","thỉnh thoảng xảy ra, chỉ khi có cơ hội tình cờ hoặc một cá nhân cụ thể chủ động kết nối","diễn ra tương đối thường xuyên và có kết quả tốt, nhưng phụ thuộc vào một hoặc hai người có mối quan hệ hoặc sáng kiến cá nhân với các hội thánh khác","việc kết nối và hỗ trợ các hội thánh khác diễn ra thường xuyên và có hệ thống, được nhiều thành viên tham gia và tiếp nối, không chỉ dựa vào một vài cá nhân có mối quan hệ sẵn có"]}
       ]}
     ]
   }
-],
-zh: [
-  { pillar: 1, name: "心", subtitle: "靈命成熟度", desc: "衡量團契整體的內在靈命與結構性的合一。",
-    indicators: [
-      { name: "指標1:查經與禱告根基", statements: [
-        { id:"1.1", title:"查經根基", quote:"團契每週聚會中,固定有一套結構性的查經(逐章研讀),作為固定的一部分。",
-          cues:["只有牧者/負責人親自準備推動才會有查經","大部分週次都有,但時有時無","查經穩定進行、準備充分、討論品質好,但只有一個人能帶","有好幾個人輪流帶查經,也在培養新人接手"]},
-        { id:"1.2", title:"集體禱告", quote:"團契會特別安排專注的集體禱告時間——不只是排練前後那種簡短的禱告。",
-          cues:["沒有人主動發起就不會有","有時有,不穩定","進行得不錯,但只有一兩人懂得怎麼帶出深度","好幾位成員輪流帶領,也在培養其他人一起帶"]}
-      ]},
-      { name: "指標2:事奉身分認同(對台上台下的態度)", statements: [
-        { id:"2.1", title:"幕後角色的態度", quote:"當成員被分配到幕後角色時,會直接接受,不會抱怨、不會一直要求換到台前/獨唱的位置。",
-          cues:["分配幕後角色會引起摩擦,負責人每次都要出面安撫","有人接受、有人會反彈,看分配到誰","現在的成員都能接受得不錯,但沒有人刻意在培養新人這種心態","有明確的做法(帶領對話、新人引導慣例)在塑造新人這種心態"]},
-        { id:"2.2", title:"舞台交棒", quote:"資深前輩會主動把台前/獨唱的位置讓給較年輕的成員,不需要負責人開口要求。",
-          cues:["前輩會佔著位置,負責人要開口才會讓","偶爾發生,不穩定","前輩現在願意讓位,但這是個人成熟度使然,沒有刻意培養其他前輩這樣做","讓位這件事會被示範並明確教導給正在成熟的前輩"]}
-      ]},
-      { name: "指標3:群體關懷與合一", statements: [
-        { id:"3.1", title:"彼此擔當", quote:"成員經常在排練後留下來,有非正式的相處時間,而且常常(不是偶爾)有人會提出自己的難處,並得到其他人的回應。",
-          cues:["沒有人刻意安排就不會發生","偶爾發生,看當天氣氛/在場的人","進行得不錯,但靠的是現在這群人的默契,沒有刻意的做法","留下來相處是一個固定、刻意的做法,也會被當作「我們的傳統」教給新人"]},
-        { id:"3.2", title:"跨世代關懷", quote:"資深成員會主動關心、鼓勵、指導資淺成員。",
-          cues:["資淺成員大多沒人理","有些資深成員會關心,不穩定","資深成員穩定地在指導資淺成員,但只是因為現在這些資深成員剛好如此","指導資淺成員是明確的期待,也會教給新加入的資深成員"]}
-      ]}
-    ]
-  },
-  { pillar: 2, name: "藝", subtitle: "音樂與世代健康", desc: "衡量LC音樂仰賴的三種角色——人聲、樂器演奏、指揮——各自的能力與領導是否可複製,而不是把「音樂能力」當作單一籠統的類別。",
-    indicators: [
-      { name: "指標4:人聲培育", statements: [
-        { id:"4.1", title:"人聲練習系統", quote:"歌手有固定的練習要求(暖嗓、音準、咬字),這是排練文化的一部分,不是靠每個人自己決定要不要做。",
-          cues:["沒有訂出任何要求,歌手練習與否很不一致","有些歌手會練習,有些不會,沒有人去要求","現在的歌手個人自律做得不錯,但沒有任何做法在培養新歌手養成這個習慣","有一套做法(聲樂指導、新人期待說明)讓新歌手不管是誰都會養成這個習慣"]},
-        { id:"4.2", title:"人聲傳承", quote:"資深歌手(主唱、和聲)會固定花一對一的時間,指導新歌手接手特定的聲部或主唱角色。",
-          cues:["沒有人在做聲樂指導","偶爾發生,不太正式","有一些一對一指導,但完全依賴一兩位現任主唱,新歌手也很少真的拿到主唱/聲部的機會","聲樂指導是固定、被期待的做法,而且新歌手真的會被給予主唱/聲部的實際上台機會,不只是私下練習"]}
-      ]},
-      { name: "指標5:樂器演奏能力", statements: [
-        { id:"5.1", title:"樂器傳承", quote:"資深樂手會固定花一對一的時間,指導、訓練較年輕的接班人,學會他們負責的角色或樂器。",
-          cues:["沒有人在做貼身指導","偶爾發生,不太正式","有一些一對一指導,但完全依賴一兩位現任導師,新樂手也很少真的拿到上台演出的機會","貼身指導是固定、被期待的做法,而且新樂手真的會被給予實際演出的機會,不只是後台練習"]},
-        { id:"5.2", title:"樂團隊長培養", quote:"有一套刻意的做法,在訓練並給予未來可能的樂團隊長真正的機會去帶領樂器組(如提示強弱、協調轉換、帶團練),而不是只依賴現任隊長。",
-          cues:["沒有人在被培養去帶領樂團","偶爾發生,沒有規劃","現任樂團隊長能力很強,但沒有給其他人真正帶團的機會","有一套刻意的管道,讓有潛力的樂手獲得真正帶領樂團的經驗"]}
-      ]},
-      { name: "指標6:指揮與音樂總監", statements: [
-        { id:"6.1", title:"指揮準備", quote:"指揮/音樂總監會提前為每次排練做準備(讀譜、排練計畫、編曲決定),而不是臨場才決定。",
-          cues:["沒有事先準備,現場才決定怎麼帶","有些場次有準備,有些沒有","現任指揮準備得很好,但沒有人被示範這種準備該怎麼做","這種準備的習慣有被清楚示範,並教給未來可能接手指揮的人"]},
-        { id:"6.2", title:"培養下一任指揮", quote:"有一套刻意的做法,在訓練並給予未來可能的下一任指揮/音樂總監真正的機會(帶部分排練、做編曲決定)——而不是只依賴現任的人。",
-          cues:["沒有人在被培養去指揮","偶爾發生,沒有規劃","現任指揮能力很強,但沒有給其他人真正指揮的機會","有一套刻意的管道,讓有潛力的樂手獲得真正指揮/帶領的經驗"]}
-      ]}
-    ]
-  },
-  { pillar: 3, name: "宣", subtitle: "福音影響力", desc: "衡量活動內容設定的精準度、非音樂團隊的動員狀況,以及LC自己招牌福音活動的可複製性。",
-    indicators: [
-      { name: "指標7:外展意圖", statements: [
-        { id:"7.1", title:"以來賓為中心的設計", quote:"規劃外展活動時,團隊會刻意用『一個完全沒有教會背景的人,能不能跟得上』這個角度,檢視音樂、主題和講話內容,並依此做出調整。",
-          cues:["沒有人會從外人的角度去想","有時候會想到,不穩定","這個檢視做得不錯,但靠的是一兩個「懂」的人,沒有固定流程","用來賓角度檢視內容,是規劃流程中固定的一步,也會教給下一任負責規劃的人"]},
-        { id:"7.2", title:"福音信息的呈現", quote:"在音樂活動中,十字架與救恩的信息會被清楚地講出來。",
-          cues:["福音信息講得不清楚","有時清楚,有時模糊","現在講得很清楚,但只是因為有一位特別擅長的講員","有好幾個人都被裝備、也有機會清楚地講出福音信息"]}
-      ]},
-      { name: "指標8:全體動員", statements: [
-        { id:"8.1", title:"角色覆蓋率", quote:"每一場活動,幕後角色(音控、媒體、招待、場地佈置)都有指定的人選、明確的職責——不是當天誰有空就臨時抓誰來做。",
-          cues:["幕後需求靠當天誰有空就找誰,沒有人有固定角色","有些角色有固定人選,有些還是要臨時湊人","每個角色都穩定有人做,但一直都是同一小群人","每個角色都穩定有人做,而且能勝任的人數持續在增加,不斷有新人加入"]},
-        { id:"8.2", title:"新人融入服事", quote:"一個沒有音樂角色的新成員,加入的頭幾場活動內,就會被分配到一個具體的幕後任務——而不是只能在旁邊看。",
-          cues:["沒有音樂角色的新人通常沒人管,沒人想到要讓他們參與","有時候會被分配,看有沒有人剛好注意到他們","新人通常很快就會被分配任務,但只是因為某個特定的人(通常是負責人)習慣主動安排","有一套固定的新人接待流程(檢查清單、夥伴制度)確保這件事發生,而且不只一個人能執行"]}
-      ]},
-      { name: "指標9:活動架構可複製性", statements: [
-        { id:"9.1", title:"結構化執行", quote:"團隊能規劃並執行兩場固定的年度活動——照著既有的傳統架構(主題、歌曲、流程)進行——不需要依賴某個『最知道該怎麼做』的特定人選。",
-          cues:["沒有那個特定人選就辦不成固定活動","能辦,但很不順,少了那個人就容易出錯","辦得很順,但還是靠某個人「知道該怎麼做」","好幾個人都懂、也能執行這套架構,相關做法有被記錄或傳承下來"]},
-        { id:"9.2", title:"自由創作", quote:"規劃沒有固定格式的活動時,團隊能一起發想並執行一個新的活動概念——不需要靠某個特定的人來提出創意方向。",
-          cues:["沒有那個特定人選就想不出新概念","能做,但很弱,缺乏原創性","能做出不錯的新概念,但只是因為某個特定人選在主導","好幾個人都能發想並執行新概念,不只靠一個人"]}
-      ]}
-    ]
-  }
-]
-};
+];
 
-let currentLang = "en";
-
-function pillarLabel(lang, num){
-  if(lang === "en") return "Pillar " + num;
-  const cn = {1:"一",2:"二",3:"三"};
-  return "支柱" + cn[num];
-}
-
-function statementLabel(lang){
-  return lang === "en" ? "Statement" : "陳述";
-}
-
-function toggleHint(lang){
-  return lang === "en" ? "Click to view maturity cues (L1–L4) ▾" : "點選查看成熟度提示(1-4級) ▾";
-}
-
-function levelTag(lang, i){
-  return lang === "en" ? ("L"+(i+1)) : ((i+1)+"級");
-}
-
-function renderQuestionnaire(lang){
-  const root = document.getElementById("questionnaire-root");
+function renderAssessment(){
+  const root = document.getElementById("assessment-root");
   root.innerHTML = "";
-  DATA[lang].forEach(pillarData => {
+  DATA.forEach(pillarData => {
     const block = document.createElement("div");
     block.className = "pillar-block" + (pillarData.pillar === 1 ? " active" : "");
     block.dataset.p = pillarData.pillar;
 
     const introCard = document.createElement("div");
     introCard.className = "card";
-    introCard.innerHTML = `<h2>${pillarLabel(lang, pillarData.pillar)} · ${pillarData.name}</h2>
-      <p class="muted">${pillarData.subtitle} — ${pillarData.desc}</p>`;
+    introCard.innerHTML = `<h2>Trụ Cột ${pillarData.pillar} · ${pillarData.name}</h2>
+      <p class="muted">${pillarData.desc}</p>`;
     block.appendChild(introCard);
+
+    // indicator quick-jump nav
+    const navRow = document.createElement("div");
+    navRow.className = "indicator-nav";
+    pillarData.indicators.forEach(ind => {
+      const a = document.createElement("a");
+      a.className = "indicator-chip p" + pillarData.pillar;
+      a.href = "#ind-" + pillarData.pillar + "-" + ind.num;
+      a.textContent = ind.name.replace(/^Tiêu Chí \d+:\s*/, "");
+      navRow.appendChild(a);
+    });
+    block.appendChild(navRow);
 
     pillarData.indicators.forEach(ind => {
       const card = document.createElement("div");
       card.className = "card";
       const indDiv = document.createElement("div");
       indDiv.className = "indicator p" + pillarData.pillar;
+      indDiv.id = "ind-" + pillarData.pillar + "-" + ind.num;
       indDiv.innerHTML = `<h3>${ind.name}</h3>`;
 
       ind.statements.forEach(st => {
         const sDiv = document.createElement("div");
         sDiv.className = "statement";
-        const quoteMark = lang === "en" ? [`&ldquo;`, `&rdquo;`] : ["「","」"];
+        sDiv.id = "st-" + st.id;
         sDiv.innerHTML = `
-          <div class="label">${statementLabel(lang)} ${st.id} · ${st.title}</div>
-          <blockquote>${quoteMark[0]}${st.quote}${quoteMark[1]}</blockquote>
-          <div class="toggle-hint">${toggleHint(lang)}</div>
+          <div class="label">Câu phát biểu ${st.id} · ${st.title}</div>
+          <blockquote>“${st.quote}”</blockquote>
           <div class="cues">
             ${st.cues.map((c,i)=>`
               <div class="cue-row">
-                <div class="cue-tag ${LEVEL_CLASS[i]}">${levelTag(lang,i)}</div>
-                <div class="cue-text"><b>${LEVELS[lang][i]}</b> ${lang === "en" ? "—" : "——"} ${c}</div>
+                <div class="cue-tag ${LEVEL_CLASS[i]}">L${i+1}</div>
+                <div class="cue-text"><b>${LEVELS[i]}</b> — ${c}</div>
               </div>
             `).join("")}
           </div>
         `;
-        sDiv.addEventListener("click", () => sDiv.classList.toggle("open"));
         indDiv.appendChild(sDiv);
       });
 
@@ -636,25 +322,34 @@ function renderQuestionnaire(lang){
     root.appendChild(block);
   });
 
-  // re-apply active pillar tab selection
   const activeTab = document.querySelector(".pillar-tab.active");
   const p = activeTab ? activeTab.dataset.p : "1";
   document.querySelectorAll(".pillar-block").forEach(b => b.classList.toggle("active", b.dataset.p === p));
 }
 
-renderQuestionnaire(currentLang);
+renderAssessment();
 
-// Tab navigation (Overview / Principles / Questionnaire / Rating Guide)
+function recalcSticky(){
+  const siteTop = document.getElementById("site-top");
+  const asmSticky = document.getElementById("assessment-sticky");
+  if(siteTop && asmSticky){
+    asmSticky.style.top = siteTop.offsetHeight + "px";
+  }
+}
+recalcSticky();
+window.addEventListener("resize", recalcSticky);
+window.addEventListener("load", recalcSticky);
+
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     document.querySelectorAll("section.view").forEach(v => v.classList.remove("active"));
     document.getElementById("view-" + btn.dataset.view).classList.add("active");
+    recalcSticky();
   });
 });
 
-// Pillar tab navigation
 document.querySelectorAll(".pillar-tab").forEach(tab => {
   tab.addEventListener("click", () => {
     document.querySelectorAll(".pillar-tab").forEach(t => t.classList.remove("active"));
@@ -662,20 +357,9 @@ document.querySelectorAll(".pillar-tab").forEach(tab => {
     document.querySelectorAll(".pillar-block").forEach(b => b.classList.remove("active"));
     const match = document.querySelector(`.pillar-block[data-p="${tab.dataset.p}"]`);
     if(match) match.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "instant" });
   });
 });
-
-// Language switch
-function setLang(lang){
-  currentLang = lang;
-  document.body.classList.remove("lang-en","lang-zh");
-  document.body.classList.add("lang-" + lang);
-  document.getElementById("btn-lang-en").classList.toggle("active", lang === "en");
-  document.getElementById("btn-lang-zh").classList.toggle("active", lang === "zh");
-  renderQuestionnaire(lang);
-}
-document.getElementById("btn-lang-en").addEventListener("click", () => setLang("en"));
-document.getElementById("btn-lang-zh").addEventListener("click", () => setLang("zh"));
 </script>
 
 </body>
