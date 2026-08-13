@@ -17,23 +17,23 @@
     margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     background:var(--bg); color:var(--ink); line-height:1.6;
   }
-
+ 
   .site-top{ position:sticky; top:0; z-index:100; background:var(--bg); }
-
+ 
   header{
     padding:24px 24px 12px; max-width:980px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:nowrap;
   }
   header .titles{ flex:1 1 auto; min-width:0; }
   header .titles h1{ font-size:1.5rem; margin:0 0 4px; }
   header .titles p{ color:var(--sub); margin:0; font-size:0.95rem; }
-
+ 
   .lang-switch{ display:flex; gap:6px; flex:0 0 auto; }
   .lang-btn{
     border:1px solid var(--line); background:var(--card); color:var(--sub);
     font-weight:700; font-size:0.85rem; padding:7px 14px; border-radius:999px; cursor:pointer;
   }
   .lang-btn.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
-
+ 
   nav{
     max-width:980px; margin:0 auto; padding:0 24px; display:flex; gap:8px;
     border-bottom:1px solid var(--line); flex-wrap:wrap;
@@ -43,11 +43,11 @@
     color:var(--sub); border-bottom:2px solid transparent; font-weight:700;
   }
   nav button.tab-btn.active{ color:var(--ink); border-bottom-color:var(--ink); }
-
+ 
   main{ max-width:980px; margin:0 auto; padding:24px; }
   section.view{ display:none; }
   section.view.active{ display:block; }
-
+ 
   .card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
     padding:20px 22px; margin-bottom:16px;
@@ -55,7 +55,7 @@
   .card h2{ margin-top:0; font-size:1.1rem; }
   .card h3{ font-size:0.98rem; margin:18px 0 6px; }
   .muted{ color:var(--sub); font-size:0.9rem; }
-
+ 
   .pillbar{ display:flex; gap:8px; margin:12px 0; }
   .pill{
     flex:1; text-align:center; font-size:1.05rem; font-weight:800; color:#fff;
@@ -63,14 +63,14 @@
   }
   .pill.l1{background:var(--l1);} .pill.l2{background:var(--l2);}
   .pill.l3{background:var(--l3);} .pill.l4{background:var(--l4);}
-
+ 
   .level-def{ border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px; border-left:5px solid var(--line); }
   .level-def.l1{ border-left-color:var(--l1); } .level-def.l2{ border-left-color:var(--l2); }
   .level-def.l3{ border-left-color:var(--l3); } .level-def.l4{ border-left-color:var(--l4); }
   .level-def .lvl-tag{ font-weight:700; font-size:0.85rem; margin-bottom:4px; }
-
+ 
   .assessment-sticky{ position:sticky; z-index:90; background:var(--bg); margin-top:-24px; padding-top:10px; padding-bottom:10px; border-bottom:1px solid var(--line); }
-
+ 
   .pillar-tabs{ display:flex; gap:10px; margin-bottom:0; flex-wrap:wrap; }
   .pillar-tab{
     border:1px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer;
@@ -79,10 +79,10 @@
   .pillar-tab.active[data-p="1"]{ background:var(--heart); color:#fff; border-color:var(--heart);}
   .pillar-tab.active[data-p="2"]{ background:var(--art); color:#fff; border-color:var(--art);}
   .pillar-tab.active[data-p="3"]{ background:var(--mission); color:#fff; border-color:var(--mission);}
-
+ 
   .pillar-block{ display:none; }
   .pillar-block.active{ display:block; }
-
+ 
   .indicator-nav{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
   .indicator-chip{
     border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:0.8rem;
@@ -92,13 +92,13 @@
   .indicator-chip.p1{ border-color:var(--heart); }
   .indicator-chip.p2{ border-color:var(--art); }
   .indicator-chip.p3{ border-color:var(--mission); }
-
+ 
   .indicator{ border-left:4px solid var(--line); padding-left:14px; margin-bottom:22px; scroll-margin-top:16px; }
   .indicator.p1{ border-color:var(--heart); }
   .indicator.p2{ border-color:var(--art); }
   .indicator.p3{ border-color:var(--mission); }
   .indicator h3{ margin:0 0 12px; }
-
+ 
   .statement{
     background:#fbfbfc; border:1px solid var(--line); border-radius:10px;
     padding:16px 18px; margin-bottom:12px; scroll-margin-top:16px;
@@ -106,16 +106,42 @@
   .statement .label{ font-size:0.85rem; font-weight:800; color:var(--ink); letter-spacing:.02em; text-transform:uppercase; }
   .statement blockquote{ margin:8px 0 0; padding-left:14px; border-left:3px solid var(--line); font-size:1.1rem; font-weight:600; font-style:normal; color:var(--ink); line-height:1.55; }
   .statement .cues{ margin-top:22px; }
-
+ 
   .cue-row{ display:flex; gap:8px; margin-bottom:7px; align-items:flex-start; }
   .cue-tag{ flex:0 0 40px; text-align:center; font-size:0.72rem; font-weight:700; color:#fff; border-radius:5px; padding:3px 0; height:fit-content; }
   .cue-tag.l1{background:var(--l1);} .cue-tag.l2{background:var(--l2);}
   .cue-tag.l3{background:var(--l3);} .cue-tag.l4{background:var(--l4);}
   .cue-text{ font-size:0.83rem; color:var(--sub); }
-
+ 
   .steps{ padding-left:20px; }
   .steps li{ margin-bottom:10px; }
-
+ 
+  /* Results tab */
+  .result-statement blockquote{ margin-bottom:6px; }
+  .result-grid{
+    display:grid; grid-template-columns:120px repeat(4, 1fr);
+    gap:8px; align-items:center; margin-top:16px;
+  }
+  .result-grid .spacer{ }
+  .result-level-box{
+    color:#fff; text-align:center; font-weight:800;
+    font-size:1.1rem; padding:12px 6px; border-radius:8px;
+  }
+  .result-level-box.l1{background:var(--l1);} .result-level-box.l2{background:var(--l2);}
+  .result-level-box.l3{background:var(--l3);} .result-level-box.l4{background:var(--l4);}
+  .result-label-cell{
+    font-size:0.78rem; font-weight:700; text-align:center; border-radius:6px; padding:7px 8px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .result-label-cell.asis{ border:1.5px solid var(--ink); color:var(--ink); background:#fff; }
+  .result-label-cell.tobe{ background:var(--ink); color:#fff; }
+  .result-count{
+    text-align:center; font-weight:800; font-size:0.95rem; border-radius:6px; padding:6px 4px; min-height:1.6em;
+  }
+  .result-count.asis{ border:1.5px solid var(--ink); color:var(--ink); background:#fff; }
+  .result-count.tobe{ background:var(--ink); color:#fff; }
+  .result-count.empty{ visibility:hidden; }
+ 
   @media (max-width: 600px){
     header{ padding:20px 16px 10px; flex-wrap:wrap; align-items:flex-start; }
     header .titles h1{ font-size:1.25rem; }
@@ -126,11 +152,15 @@
     .pillbar{ flex-wrap:wrap; }
     .pill{ flex:1 1 40%; font-size:0.9rem; padding:10px 6px; }
     .cue-tag{ flex:0 0 34px; font-size:0.68rem; }
+    .result-grid{ grid-template-columns:82px repeat(4, 1fr); gap:5px; }
+    .result-level-box{ font-size:0.85rem; padding:9px 4px; border-radius:6px; }
+    .result-label-cell{ font-size:0.6rem; padding:5px 4px; }
+    .result-count{ font-size:0.78rem; padding:5px 3px; }
   }
 </style>
 </head>
 <body>
-
+ 
 <div class="site-top" id="site-top">
 <header>
   <div class="titles">
@@ -141,59 +171,75 @@
     <button class="lang-btn" data-lang="zh">CN</button>
   </div>
 </header>
-
+ 
 <nav>
   <button class="tab-btn active" data-view="guideline" id="nav-guideline">Hướng Dẫn Đánh Giá</button>
   <button class="tab-btn" data-view="assessment" id="nav-assessment">Bộ Đánh Giá</button>
+  <button class="tab-btn" data-view="results" id="nav-results">Kết Quả</button>
 </nav>
 </div>
-
+ 
 <main>
-
+ 
   <!-- RATING GUIDELINE -->
   <section class="view active" id="view-guideline">
     <div id="guideline-root"></div>
   </section>
-
+ 
   <!-- ASSESSMENT -->
   <section class="view" id="view-assessment">
     <div class="assessment-sticky" id="assessment-sticky">
       <div class="pillar-tabs" id="pillar-tabs"></div>
     </div>
-
+ 
     <div id="assessment-root" style="margin-top:16px;"></div>
   </section>
-
+ 
+  <!-- RESULTS -->
+  <section class="view" id="view-results">
+    <div class="assessment-sticky" id="results-sticky">
+      <div class="pillar-tabs" id="results-pillar-tabs"></div>
+    </div>
+ 
+    <div id="results-root" style="margin-top:16px;"></div>
+  </section>
+ 
 </main>
-
+ 
 <script>
 const LEVELS = {
   vi: ["Sơ sinh","Phát triển","Trưởng thành","Tiếp nối"],
   zh: ["嬰兒期","成長期","成熟期","傳承期"]
 };
 const LEVEL_CLASS = ["l1","l2","l3","l4"];
-
+ 
 const UI = {
   vi: {
     docTitle: "Khung Đánh Giá 樂歌 (LC)",
     h1: "Khung Đánh Giá 樂歌 (LC)",
     navGuideline: "Hướng Dẫn Đánh Giá",
     navAssessment: "Bộ Đánh Giá",
+    navResults: "Kết Quả",
     statementLabel: "Câu phát biểu",
     indicatorStrip: /^Tiêu Chí \d+:\s*/,
-    pillarPrefix: "Trụ Cột"
+    pillarPrefix: "Trụ Cột",
+    asIsLabel: "Hiện tại",
+    toBeLabel: "Mong muốn"
   },
   zh: {
     docTitle: "『樂歌團契』評估框架 —— 探索頁面",
     h1: "『樂歌團契』評估框架",
     navGuideline: "評分指南",
     navAssessment: "評估問卷",
+    navResults: "結果",
     statementLabel: "陳述",
     indicatorStrip: /^指標\d+[:：]\s*/,
-    pillarPrefix: "支柱"
+    pillarPrefix: "支柱",
+    asIsLabel: "現況",
+    toBeLabel: "目標"
   }
 };
-
+ 
 const GUIDELINE_HTML = {
   vi: `
     <div class="card">
@@ -213,21 +259,21 @@ const GUIDELINE_HTML = {
         <li><b>Mong muốn</b>: bạn muốn nó ở đâu.</li>
       </ul>
     </div>
-
+ 
     <div class="card">
       <h2>Bạn đang đánh giá cái gì?</h2>
       <p>Với mỗi câu phát biểu, đừng hỏi "điều này có đang được làm tốt không?", thay vào đó hãy hỏi:</p>
       <p><b>"Nếu những người đang làm điều này rời đi vào ngày mai, nó có còn được duy trì nữa hay không?"</b></p>
-      <p>Hôm nay việc này có thể được thực hiện rất tốt nhưng nếu nó chỉ sống được nhờ một hoặc hai người nào đó và không ai khác đang được hướng dẫn để tiếp nối thì nó không ở "Cấp độ 4".</p>
+      <p>Hôm nay việc này có thể được thực hiện rất tốt nhưng nếu nó chỉ sống được nhờ một hoặc hai người nào đó và không ai khác đang được hướng dẫn để tiếp nối thì nó <i>không</i> ở "Cấp độ 4".</p>
       <p>Với từng câu phát biểu, hãy hỏi: <i>có ai đó thực sự đang được huấn luyện để tiếp quản việc này không?</i></p>
       <ul>
         <li>Nếu có → <b>Cấp độ 4.</b></li>
         <li>Nếu nó chỉ đang được làm tốt bởi bất kỳ ai đang làm hiện tại, và không ai khác đang học điều đó → <b>Cấp độ 3.</b></li>
       </ul>
       <p class="muted">Nhiều điểm "Cấp độ 3" có thể tạo cảm giác thỏa mãn, vì mọi thứ lúc này trông có vẻ ổn. Nhưng hãy thử nhìn theo hướng khác: Cấp độ 3 thực ra là một lời cảnh báo - nó có nghĩa là phương diện này chỉ sống được nhờ một hoặc hai cá nhân, và vấn đề sẽ ngay lập tức xuất hiện khi họ không còn đó nữa.</p>
-      <p class="muted">Đồng thời "Cấp độ 3" cũng tạo ra sự cấp bách trong việc tìm người tiếp nối so với "Cấp độ 1" (ban ngành chưa từng làm việc này).</p>
+      <p class="muted">Đồng thời "Cấp độ 3" cũng tạo ra <i>sự cấp bách</i> trong việc tìm người tiếp nối so với "Cấp độ 1" (ban ngành chưa từng làm việc này).</p>
     </div>
-
+ 
     <div class="card">
       <h2>Bốn Cấp Độ</h2>
       <div class="pillbar">
@@ -257,7 +303,7 @@ const GUIDELINE_HTML = {
         <li><b>目標</b>：你希望它變成怎樣。</li>
       </ul>
     </div>
-
+ 
     <div class="card">
       <h2>你在評分什麼？</h2>
       <p>對每一句陳述句，不要問「這件事做得好不好?」，而是要問：</p>
@@ -271,7 +317,7 @@ const GUIDELINE_HTML = {
       <p class="muted">「L3」評分也許會給人有滿足感，因為現況看起來都順利。但試著換個角度來看：L3其實是一個警號 - 代表這個層面只靠一兩個人在撐著，一旦他們不在了，問題就會浮現（事情就停滯不前）。</p>
       <p class="muted">「L3」比「L1」（團契從來沒做過這件事）更有&ldquo;尋找接班人&rdquo;的急迫性</p>
     </div>
-
+ 
     <div class="card">
       <h2>四個等級</h2>
       <div class="pillbar">
@@ -284,7 +330,7 @@ const GUIDELINE_HTML = {
     </div>
   `
 };
-
+ 
 const DATA = {
   vi: [
     { pillar: 1, name: "Thuộc Linh", desc: "Đo lường sự trưởng thành trong đời sống thuộc linh, tâm thế phục vụ khiêm nhường, và sự hiệp nhất của cả ban ngành.",
@@ -344,7 +390,7 @@ const DATA = {
             cues:["không thể thực hiện sự kiện nếu thiếu một hoặc hai người cụ thể; cả vai trò ngoài âm nhạc lẫn cấu trúc chương trình đều phụ thuộc vào họ","vẫn thực hiện được nhưng chông chênh, có sai sót rõ rệt khi thiếu người đó, dù ở phần vai trò hay cấu trúc chương trình","thực hiện trôi chảy, nhưng vẫn phụ thuộc vào một hoặc hai người \"biết cách làm\" và lấp đầy vai trò còn thiếu","nhiều người biết cấu trúc chương trình và có thể đảm nhận các vai trò cần thiết; kiến thức và vai trò đã được truyền lại hoặc ghi lại, không phụ thuộc vào riêng ai"]}
         ]},
         { num: 9, name: "Tiêu Chí 9: Liên Kết Các Hội Thánh", statements: [
-          { id:"9.1", title:"Kết nối và hỗ trợ Hội Thánh khác", quote:"Chủ động tổ chức hoặc hỗ trợ các hoạt động thánh nhạc cho các hội thánh khác (ví dụ: huấn luyện, hội thảo chung) không chỉ giới hạn trong nội bộ ban ngành.",
+          { id:"9.1", title:"Kết nối và hỗ trợ Hội Thánh khác", quote:"Chủ động tổ chức hoặc hỗ trợ các hoạt động thánh nhạc cho các Hội Thánh khác (ví dụ: huấn luyện, hội thảo chung) không chỉ giới hạn trong nội bộ ban ngành.",
             cues:["hoàn toàn không có hoạt động nào hướng ra ngoài; mọi nỗ lực chỉ giới hạn trong nội bộ","thỉnh thoảng xảy ra, chỉ khi có cơ hội tình cờ hoặc một cá nhân cụ thể chủ động kết nối","diễn ra tương đối thường xuyên và có kết quả tốt, nhưng phụ thuộc vào một hoặc hai người có mối quan hệ hoặc sáng kiến cá nhân với các hội thánh khác","việc kết nối và hỗ trợ các hội thánh khác diễn ra thường xuyên và có hệ thống, được nhiều thành viên tham gia và tiếp nối, không chỉ dựa vào một vài cá nhân có mối quan hệ sẵn có"]}
         ]}
       ]
@@ -415,38 +461,63 @@ const DATA = {
     }
   ]
 };
-
+ 
+/* Placeholder results data — counts of individual As-Is/To-Be ratings per level (L1–L4), by statement id.
+   Shared across VN/CN since it's the same 16 statements either way.
+   Replace the numbers below once real committee data comes in — see comment further down for how. */
+const RESULTS = {
+  "1.1": { asIs:[0,4,3,1],  toBe:[0,0,4,4] },
+  "1.2": { asIs:[1,5,2,0],  toBe:[0,1,3,4] },
+  "2.1": { asIs:[0,2,6,0],  toBe:[0,0,3,5] },
+  "2.2": { asIs:[2,4,2,0],  toBe:[0,2,3,3] },
+  "3.1": { asIs:[0,1,7,0],  toBe:[0,0,5,3] },
+  "3.2": { asIs:[1,4,3,0],  toBe:[0,1,3,4] },
+  "4.1": { asIs:[0,10,2,0], toBe:[0,0,6,6] },
+  "4.2": { asIs:[3,8,1,0],  toBe:[0,0,12,0] },
+  "5.1": { asIs:[2,5,3,0],  toBe:[0,1,4,5] },
+  "5.2": { asIs:[1,6,3,0],  toBe:[0,2,3,5] },
+  "6.1": { asIs:[0,3,7,0],  toBe:[0,0,4,6] },
+  "6.2": { asIs:[2,5,3,0],  toBe:[0,1,4,5] },
+  "7.1": { asIs:[0,2,6,0],  toBe:[0,0,3,5] },
+  "7.2": { asIs:[1,4,4,0],  toBe:[0,1,3,4] },
+  "8.1": { asIs:[0,3,5,0],  toBe:[0,0,4,4] },
+  "9.1": { asIs:[1,5,2,0],  toBe:[0,2,3,3] }
+};
+ 
 const PILLAR_TAB_LABELS = {
   vi: ["Trụ Cột 1 · Thuộc Linh","Trụ Cột 2 · Âm Nhạc","Trụ Cột 3 · Sứ Mệnh"],
   zh: ["支柱1 · 靈命","支柱2 · 音樂","支柱3 · 使命"]
 };
-
+ 
 let currentLang = "vi";
 let currentPillar = "1";
-
+ 
 function renderGuideline(){
   document.getElementById("guideline-root").innerHTML = GUIDELINE_HTML[currentLang];
 }
-
+ 
 function renderPillarTabs(){
-  const wrap = document.getElementById("pillar-tabs");
-  wrap.innerHTML = "";
-  PILLAR_TAB_LABELS[currentLang].forEach((label, i) => {
-    const p = String(i+1);
-    const div = document.createElement("div");
-    div.className = "pillar-tab" + (p === currentPillar ? " active" : "");
-    div.dataset.p = p;
-    div.textContent = label;
-    div.addEventListener("click", () => {
-      currentPillar = p;
-      renderPillarTabs();
-      document.querySelectorAll(".pillar-block").forEach(b => b.classList.toggle("active", b.dataset.p === p));
-      window.scrollTo({ top: 0, behavior: "instant" });
+  ["pillar-tabs", "results-pillar-tabs"].forEach(wrapId => {
+    const wrap = document.getElementById(wrapId);
+    if(!wrap) return;
+    wrap.innerHTML = "";
+    PILLAR_TAB_LABELS[currentLang].forEach((label, i) => {
+      const p = String(i+1);
+      const div = document.createElement("div");
+      div.className = "pillar-tab" + (p === currentPillar ? " active" : "");
+      div.dataset.p = p;
+      div.textContent = label;
+      div.addEventListener("click", () => {
+        currentPillar = p;
+        renderPillarTabs();
+        document.querySelectorAll(".pillar-block").forEach(b => b.classList.toggle("active", b.dataset.p === p));
+        window.scrollTo({ top: 0, behavior: "instant" });
+      });
+      wrap.appendChild(div);
     });
-    wrap.appendChild(div);
   });
 }
-
+ 
 function renderAssessment(){
   const ui = UI[currentLang];
   const root = document.getElementById("assessment-root");
@@ -455,13 +526,13 @@ function renderAssessment(){
     const block = document.createElement("div");
     block.className = "pillar-block" + (String(pillarData.pillar) === currentPillar ? " active" : "");
     block.dataset.p = pillarData.pillar;
-
+ 
     const introCard = document.createElement("div");
     introCard.className = "card";
     introCard.innerHTML = `<h2>${ui.pillarPrefix} ${pillarData.pillar} · ${pillarData.name}</h2>
       <p class="muted">${pillarData.desc}</p>`;
     block.appendChild(introCard);
-
+ 
     // indicator quick-jump nav
     const navRow = document.createElement("div");
     navRow.className = "indicator-nav";
@@ -473,7 +544,7 @@ function renderAssessment(){
       navRow.appendChild(a);
     });
     block.appendChild(navRow);
-
+ 
     pillarData.indicators.forEach(ind => {
       const card = document.createElement("div");
       card.className = "card";
@@ -481,7 +552,7 @@ function renderAssessment(){
       indDiv.className = "indicator p" + pillarData.pillar;
       indDiv.id = "ind-" + pillarData.pillar + "-" + ind.num;
       indDiv.innerHTML = `<h3>${ind.name}</h3>`;
-
+ 
       ind.statements.forEach(st => {
         const sDiv = document.createElement("div");
         sDiv.className = "statement";
@@ -500,36 +571,124 @@ function renderAssessment(){
         `;
         indDiv.appendChild(sDiv);
       });
-
+ 
       card.appendChild(indDiv);
       block.appendChild(card);
     });
-
+ 
     root.appendChild(block);
   });
 }
-
+ 
+function renderResults(){
+  const ui = UI[currentLang];
+  const root = document.getElementById("results-root");
+  root.innerHTML = "";
+ 
+  DATA[currentLang].forEach(pillarData => {
+    const block = document.createElement("div");
+    block.className = "pillar-block" + (String(pillarData.pillar) === currentPillar ? " active" : "");
+    block.dataset.p = pillarData.pillar;
+ 
+    const introCard = document.createElement("div");
+    introCard.className = "card";
+    introCard.innerHTML = `<h2>${ui.pillarPrefix} ${pillarData.pillar} · ${pillarData.name}</h2>
+      <p class="muted">${pillarData.desc}</p>`;
+    block.appendChild(introCard);
+ 
+    // indicator quick-jump nav
+    const navRow = document.createElement("div");
+    navRow.className = "indicator-nav";
+    pillarData.indicators.forEach(ind => {
+      const a = document.createElement("a");
+      a.className = "indicator-chip p" + pillarData.pillar;
+      a.href = "#res-ind-" + pillarData.pillar + "-" + ind.num;
+      a.textContent = ind.name.replace(ui.indicatorStrip, "");
+      navRow.appendChild(a);
+    });
+    block.appendChild(navRow);
+ 
+    pillarData.indicators.forEach(ind => {
+      const card = document.createElement("div");
+      card.className = "card";
+      const indDiv = document.createElement("div");
+      indDiv.className = "indicator p" + pillarData.pillar;
+      indDiv.id = "res-ind-" + pillarData.pillar + "-" + ind.num;
+      indDiv.innerHTML = `<h3>${ind.name}</h3>`;
+ 
+      ind.statements.forEach(st => {
+        const r = RESULTS[st.id] || { asIs:[0,0,0,0], toBe:[0,0,0,0] };
+ 
+        const sDiv = document.createElement("div");
+        sDiv.className = "statement result-statement";
+        sDiv.id = "st-res-" + st.id;
+ 
+        const levelBoxes = LEVEL_CLASS.map((lc,i) => `<div class="result-level-box ${lc}">L${i+1}</div>`).join("");
+        const asIsCells = r.asIs.map(n => n > 0
+          ? `<div class="result-count asis">${n}</div>`
+          : `<div class="result-count asis empty">0</div>`
+        ).join("");
+        const toBeCells = r.toBe.map(n => n > 0
+          ? `<div class="result-count tobe">${n}</div>`
+          : `<div class="result-count tobe empty">0</div>`
+        ).join("");
+ 
+        sDiv.innerHTML = `
+          <div class="label">${ui.statementLabel} ${st.id} · ${st.title}</div>
+          <blockquote>“${st.quote}”</blockquote>
+          <div class="result-grid">
+            <div class="spacer"></div>
+            ${levelBoxes}
+            <div class="result-label-cell asis">${ui.asIsLabel}</div>
+            ${asIsCells}
+            <div class="result-label-cell tobe">${ui.toBeLabel}</div>
+            ${toBeCells}
+          </div>
+          <div class="cues">
+            ${st.cues.map((c,i)=>`
+              <div class="cue-row">
+                <div class="cue-tag ${LEVEL_CLASS[i]}">L${i+1}</div>
+                <div class="cue-text"><b>${LEVELS[currentLang][i]}</b> — ${c}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+        indDiv.appendChild(sDiv);
+      });
+ 
+      card.appendChild(indDiv);
+      block.appendChild(card);
+    });
+ 
+    root.appendChild(block);
+  });
+}
+ 
 function renderAll(){
   const ui = UI[currentLang];
   document.title = ui.docTitle;
   document.getElementById("h1-title").textContent = ui.h1;
   document.getElementById("nav-guideline").textContent = ui.navGuideline;
   document.getElementById("nav-assessment").textContent = ui.navAssessment;
+  document.getElementById("nav-results").textContent = ui.navResults;
   document.documentElement.lang = currentLang === "zh" ? "zh-Hant" : "vi";
   renderGuideline();
   renderPillarTabs();
   renderAssessment();
+  renderResults();
   recalcSticky();
 }
-
+ 
 function recalcSticky(){
   const siteTop = document.getElementById("site-top");
+  if(!siteTop) return;
+  const h = siteTop.offsetHeight + "px";
   const asmSticky = document.getElementById("assessment-sticky");
-  if(siteTop && asmSticky){
-    asmSticky.style.top = siteTop.offsetHeight + "px";
-  }
+  const resSticky = document.getElementById("results-sticky");
+  if(asmSticky) asmSticky.style.top = h;
+  if(resSticky) resSticky.style.top = h;
 }
-
+ 
 document.querySelectorAll(".lang-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     if(btn.dataset.lang === currentLang) return;
@@ -539,7 +698,7 @@ document.querySelectorAll(".lang-btn").forEach(btn => {
     renderAll();
   });
 });
-
+ 
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -549,11 +708,12 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     recalcSticky();
   });
 });
-
+ 
 renderAll();
 window.addEventListener("resize", recalcSticky);
 window.addEventListener("load", recalcSticky);
 </script>
-
+ 
 </body>
 </html>
+ 
