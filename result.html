@@ -173,16 +173,16 @@
 </header>
  
 <nav>
-  <button class="tab-btn active" data-view="guideline" id="nav-guideline">Hướng Dẫn Đánh Giá</button>
-  <button class="tab-btn" data-view="assessment" id="nav-assessment">Bộ Đánh Giá</button>
-  <button class="tab-btn" data-view="results" id="nav-results">Kết Quả</button>
+  <!-- <button class="tab-btn active" data-view="guideline" id="nav-guideline">Hướng Dẫn Đánh Giá</button>
+  <button class="tab-btn" data-view="assessment" id="nav-assessment">Bộ Đánh Giá</button> -->
+  <button class="tab-btn active" data-view="results" id="nav-results">Kết Quả</button>
 </nav>
 </div>
  
 <main>
  
   <!-- RATING GUIDELINE -->
-  <section class="view active" id="view-guideline">
+  <section class="view" id="view-guideline">
     <div id="guideline-root"></div>
   </section>
  
@@ -196,7 +196,7 @@
   </section>
  
   <!-- RESULTS -->
-  <section class="view" id="view-results">
+  <section class="view active" id="view-results">
     <div class="assessment-sticky" id="results-sticky">
       <div class="pillar-tabs" id="results-pillar-tabs"></div>
     </div>
@@ -668,8 +668,10 @@ function renderAll(){
   const ui = UI[currentLang];
   document.title = ui.docTitle;
   document.getElementById("h1-title").textContent = ui.h1;
-  document.getElementById("nav-guideline").textContent = ui.navGuideline;
-  document.getElementById("nav-assessment").textContent = ui.navAssessment;
+  const navGuidelineBtn = document.getElementById("nav-guideline");
+  if(navGuidelineBtn) navGuidelineBtn.textContent = ui.navGuideline;
+  const navAssessmentBtn = document.getElementById("nav-assessment");
+  if(navAssessmentBtn) navAssessmentBtn.textContent = ui.navAssessment;
   document.getElementById("nav-results").textContent = ui.navResults;
   document.documentElement.lang = currentLang === "zh" ? "zh-Hant" : "vi";
   renderGuideline();
